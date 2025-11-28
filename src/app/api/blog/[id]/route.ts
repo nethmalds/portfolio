@@ -4,12 +4,13 @@ import { BlogPost } from '@/models';
 import { Types } from 'mongoose';
 
 interface Params {
-  params: {
+  params: Promise<{
     id: string; // MongoDB ObjectId
-  };
+  }>;
 }
 
-export async function GET(request: NextRequest, { params }: Params) {
+export async function GET(request: NextRequest, props: Params) {
+  const params = await props.params;
   try {
     // Connect to database
     await connectDB();
@@ -51,7 +52,8 @@ export async function GET(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function PUT(request: NextRequest, { params }: Params) {
+export async function PUT(request: NextRequest, props: Params) {
+  const params = await props.params;
   try {
     // Connect to database
     await connectDB();
@@ -106,7 +108,8 @@ export async function PUT(request: NextRequest, { params }: Params) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: Params) {
+export async function DELETE(request: NextRequest, props: Params) {
+  const params = await props.params;
   try {
     // Connect to database
     await connectDB();
