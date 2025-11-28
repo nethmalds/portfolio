@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,11 +12,11 @@ interface ProjectCardProps {
 		id: string;
 		title: string;
 		description: string;
-		image: string;
+		image?: string | null; // allow null/undefined and empty values
 		technologies: string[];
-		role: string;
-		year: string;
-		status: string;
+		role?: string | null;
+		year?: string | null;
+		status?: string | null;
 		links: {
 			live?: string | null;
 			case: string;
@@ -34,20 +34,26 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 			className="group"
 		>
 			<Card
-				className={`overflow-hidden card-hover glass ${featured ? "border-primary/20" : ""} h-full`}
+				className={`overflow-hidden card-hover p-0 glass ${featured ? "border-primary/20" : ""} h-full`}
 			>
 				{/* Project Image */}
 				<div
-					className={`relative overflow-hidden ${featured ? "h-80" : "h-48"}`}
+					className="relative overflow-hidden h-80"
 				>
-					<Image
-						src={project.image}
-						alt={project.title}
-						fill
-						className="object-cover transition-transform duration-500 group-hover:scale-105"
-						placeholder="blur"
-						blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKECEQERIRFRERFRQhFRAYGhsYGhcRFhshGhkeGhseFCAhJSoiFCccJxsdGCA/Fhv/wAARCAAgACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAwQFBgIB/8QALBAAAQQBAwMEAAcAAAAAAAAAAQIDEQAEBRIhQVFhIoGRsQYHEyNSocHh8P/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAHBEAAgIDAQEAAAAAAAAAAAAAAACgAQMhMkH/2gAMAwEAAhEDEQA/AKe2tZmJD2VGI/dTGXKQ0KfDSVElICwAKBUedR8rjJOTD2VGI/dTGXKQ0KfDSVElICwAKBUedR8"
-					/>
+					{project.image ? (
+						<Image
+							src={project.image}
+							alt={project.title}
+							fill
+							className="object-cover transition-transform duration-500 group-hover:scale-105"
+							placeholder="blur"
+							blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKECEQERIRFRERFRQhFRAYGhsYGhcRFhshGhkeGhseFCAhJSoiFCccJxsdGCA/Fhv/wAARCAAgACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAwQFBgIB/8QALBAAAQQBAwMEAAcAAAAAAAAAAQIDEQAEBRIhQVFhIoGRsQYHEyNSocHh8P/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAHBEAAgIDAQEAAAAAAAAAAAAAAACgAQMhMkH/2gAMAwEAAhEDEQA/AKe2tZmJD2VGI/dTGXKQ0KfDSVElICwAKBUedR8rjJOTD2VGI/dTGXKQ0KfDSVElICwAKBUedR8"
+						/>
+					) : (
+						<div className="flex items-center justify-center bg-muted/60 text-muted-foreground h-full w-full">
+							<span className="px-4 text-center text-sm font-medium">{project.title}</span>
+						</div>
+					)}
 
 					{/* Overlay with quick actions */}
 					<div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center space-x-4">
@@ -63,14 +69,14 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 							</Button>
 						)}
 
-						<Button asChild size="sm" variant="secondary">
+						<Button asChild size="sm" className="bg-transparent hover:bg-transparent text-white hover:text-primary">
 							<Link href={project.links.case}>
 								<HiEye className="h-4 w-4" />
 							</Link>
 						</Button>
 
 						{project.links.repo && (
-							<Button asChild size="sm" variant="outline">
+							<Button asChild size="sm" className="bg-transparent hover:bg-transparent text-white hover:text-primary">
 								<Link
 									href={project.links.repo}
 									target="_blank"
@@ -86,11 +92,12 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 					<div className="absolute top-4 right-4">
 						<span
 							className={`px-2 py-1 rounded-full text-xs font-medium ${
-								project.status === "Featured"
+								project.status === "Ongoing"
 									? "bg-primary text-primary-foreground"
-									: project.status === "Live"
-										? "bg-green-500 text-white"
-										: "bg-muted text-muted-foreground"
+									: project.status === "Active" || project.status === "Completed"
+										? "bg-green-600 text-white"
+										: "bg-gray-600 text-white"
+
 							}`}
 						>
 							{project.status}
@@ -98,7 +105,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 					</div>
 				</div>
 
-				<CardContent className="p-6 space-y-4">
+				<CardContent className="px-6 pb-6 space-y-4">
 					{/* Project Meta */}
 					<div className="flex items-center justify-between text-sm text-muted-foreground">
 						<span>{project.role}</span>
@@ -115,7 +122,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 							</Link>
 						</h3>
 
-						<p className="text-muted-foreground text-sm leading-relaxed">
+						<p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
 							{project.description}
 						</p>
 					</div>
@@ -136,9 +143,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 					<div className="flex items-center justify-between pt-2">
 						<Button
 							asChild
-							variant="ghost"
 							size="sm"
-							className="text-primary hover:text-primary hover:bg-primary/10"
+							className="text-white bg-transparent hover:text-primary hover:bg-transparent"
 						>
 							<Link href={project.links.case}>View Case Study →</Link>
 						</Button>
@@ -147,9 +153,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 							{project.links.live && (
 								<Button
 									asChild
-									variant="ghost"
 									size="icon-sm"
-									className="h-8 w-8"
+									className="h-8 w-8 bg-transparent hover:bg-transparent text-white hover:text-primary"
 								>
 									<Link
 										href={project.links.live}
@@ -165,9 +170,8 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 							{project.links.repo && (
 								<Button
 									asChild
-									variant="ghost"
 									size="icon-sm"
-									className="h-8 w-8"
+									className="h-8 w-8 bg-transparent hover:bg-transparent text-white hover:text-primary"
 								>
 									<Link
 										href={project.links.repo}

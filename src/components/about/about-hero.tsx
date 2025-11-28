@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import { HiDownload, HiMail } from "react-icons/hi";
 
 export function AboutHero() {
+	const [imageError, setImageError] = useState(false);
 	return (
 		<section className="py-20 lg:py-32 bg-background">
 			<div className="container mx-auto max-w-screen-2xl px-4">
@@ -18,18 +20,31 @@ export function AboutHero() {
 						transition={{ duration: 0.8 }}
 						className="relative"
 					>
-						<div className="relative w-full max-w-md mx-auto lg:mx-0">
-							<div className="aspect-square relative">
+						<div className="relative w-full mx-auto lg:mx-0">
+							<div className="relative">
 								<div className="absolute inset-0 bg-linear-to-br from-primary/20 to-accent/20 rounded-2xl blur-3xl" />
 								<div className="relative z-10 aspect-square rounded-2xl overflow-hidden glass border-2 border-primary/20">
-									{/* Placeholder for profile image */}
-									<div className="w-full h-full bg-muted flex items-center justify-center">
-										<div className="text-center space-y-2">
-											<div className="text-6xl">👨‍💻</div>
-											<p className="text-sm text-muted-foreground">
-												Profile Photo
-											</p>
-										</div>
+									{/* Profile image with fallback placeholder */}
+									<div className="relative w-full h-full">
+										{!imageError ? (
+											<Image
+												src="/images/profile/profile-image.jpg"
+												alt="Dasun Sri profile"
+												fill
+												className="object-cover"
+												onError={() => setImageError(true)}
+												priority
+											/>
+										) : (
+											<div className="w-full h-full bg-muted flex items-center justify-center">
+												<div className="text-center space-y-2">
+													<div className="text-6xl">👨‍💻</div>
+													<p className="text-sm text-muted-foreground">
+														Profile Photo
+													</p>
+												</div>
+											</div>
+										)}
 									</div>
 								</div>
 							</div>
@@ -56,7 +71,7 @@ export function AboutHero() {
 
 						<div className="space-y-6 text-muted-foreground">
 							<p className="text-lg">
-								I'm Alex Chen, a full stack developer with over 5 years of
+								I&apos;m Alex Chen, a full stack developer with over 5 years of
 								experience creating digital solutions that bridge the gap
 								between design and technology. My passion lies in building
 								products that not only solve real problems but also deliver
@@ -71,7 +86,7 @@ export function AboutHero() {
 							</p>
 
 							<p>
-								When I'm not coding, you'll find me contributing to open source
+								When I&apos;m not coding, you&apos;ll find me contributing to open source
 								projects, writing technical articles, mentoring junior
 								developers, or exploring the latest developments in web
 								standards and performance optimization.

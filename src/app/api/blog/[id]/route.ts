@@ -86,14 +86,13 @@ export async function PUT(request: NextRequest, { params }: Params) {
       data: post,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Update blog post error:', error);
+    const err = error as { name?: string; errors?: Record<string, { message: string }> };
 
     // Handle validation errors
-    if (error.name === 'ValidationError') {
-      const validationErrors = Object.values(error.errors).map(
-        (err: any) => err.message
-      );
+    if (err.name === 'ValidationError' && err.errors) {
+      const validationErrors = Object.values(err.errors).map((e) => e.message);
       return NextResponse.json(
         { error: 'Validation failed', details: validationErrors },
         { status: 400 }

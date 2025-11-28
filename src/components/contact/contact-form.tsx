@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { /* motion */ } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { HiPaperAirplane, HiCheck, HiExclamation } from "react-icons/hi";
+import { HiPaperAirplane, HiExclamation } from "react-icons/hi";
 import { contactFormSchema, ContactFormSchema } from "@/validation/contact-form";
 
 
@@ -18,7 +18,7 @@ const budgetOptions = [
 	"$25k - $50k",
 	"$50k - $100k",
 	"$100k+",
-	"Let's discuss",
+	"Let&apos;s discuss",
 ];
 
 const timelineOptions = [
@@ -55,12 +55,13 @@ export function ContactForm() {
 	       const [errors, setErrors] = useState<FormErrors>({});
 	       const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
 	       const [isSubmitting, setIsSubmitting] = useState(false);
-	       const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+		// submit status was unused; keeping a placeholder in case it's needed in future
+		// const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
 		       // Validate a single field
-				       const validateField = (name: keyof FormData, value: any) => {
+					const validateField = (name: keyof FormData, value: unknown) => { 
 					       // Use safeParse + flatten to reliably get the field error messages from Zod
-					       const res = contactFormSchema.pick({ [name]: true }).safeParse({ [name]: value });
+						   const res = contactFormSchema.pick({ [name]: true }).safeParse({ [name]: value } as Record<string, unknown>);
 					       if (res.success) {
 						       setErrors((prev) => ({ ...prev, [name]: undefined }));
 						       return;
@@ -110,7 +111,7 @@ export function ContactForm() {
 		if (!validateForm()) return;
 
 		setIsSubmitting(true);
-		setSubmitStatus("idle");
+		// setSubmitStatus("idle");
 
 		try {
 			// Send all form data to email API
@@ -134,7 +135,7 @@ export function ContactForm() {
 				throw new Error(responseData.error || 'Failed to send message');
 			}
 
-			setSubmitStatus("success");
+			// setSubmitStatus("success");
 			setFormData({
 				name: "",
 				email: "",
@@ -145,11 +146,11 @@ export function ContactForm() {
 				timeline: "",
 			});
 			toast.success("Email sent successfully!", {
-				description: "Thank you for reaching out! I'll get back to you within 24 hours."
+				description: "Thank you for reaching out! I will get back to you within 24 hours."
 			});
 		} catch (error) {
 			console.error('Contact form submission error:', error);
-			setSubmitStatus("error");
+			// setSubmitStatus("error");
 			toast.error("Failed to send message", {
 				description: "Please try again or email me directly."
 			});
@@ -184,7 +185,7 @@ export function ContactForm() {
 					Start a Conversation
 				</CardTitle>
 				<p className="text-muted-foreground">
-					Fill out the form below and I'll get back to you within 24 hours.
+					Fill out the form below and I will get back to you within 24 hours.
 				</p>
 			</CardHeader>
 

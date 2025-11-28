@@ -129,7 +129,7 @@ export const sendAutoReply = async (data: ContactEmailData): Promise<boolean> =>
   }
 };
 
-/* // Verify email configuration
+// Verify email configuration
 export const verifyEmailConfig = async (): Promise<boolean> => {
   try {
     const transporter = createTransporter();
@@ -139,4 +139,4 @@ export const verifyEmailConfig = async (): Promise<boolean> => {
     console.error('Email configuration verification failed:', error);
     return false;
   }
-}; */
+};

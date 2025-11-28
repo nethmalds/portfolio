@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { HiArrowLeft, HiCalendar, HiClock, HiTag } from "react-icons/hi";
+import { HiArrowLeft, HiCalendar, HiClock } from "react-icons/hi";
 import connectDB from "@/lib/mongodb";
 import { BlogPost } from "@/models";
 import { Types } from "mongoose";

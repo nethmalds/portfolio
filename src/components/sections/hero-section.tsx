@@ -42,7 +42,7 @@ export function HeroSection() {
 							className="space-y-4"
 						>
 							<h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
-								<span className="text-foreground">Hi, I'm </span>
+								<span className="text-foreground">Hi, I&apos;m </span>
 								<span className="gradient-text">Dasun Sri Nethmal</span>
 							</h1>
 							<h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">

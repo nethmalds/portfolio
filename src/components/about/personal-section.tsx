@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import {
 	HiMail,
-	HiHeart,
 	HiLightBulb,
 	HiUsers,
 	HiGlobe,
@@ -17,8 +16,8 @@ const interests = [
 	{
 		icon: HiLightBulb,
 		title: "Innovation",
-		description:
-			"Always exploring new technologies and pushing the boundaries of what's possible",
+		    description:
+			    "Always exploring new technologies and pushing the boundaries of what&apos;s possible",
 	},
 	{
 		icon: HiUsers,
@@ -73,16 +72,16 @@ export function PersonalSection() {
 
 						<div className="space-y-6 text-muted-foreground">
 							<p className="text-lg">
-								Technology is more than just code to me—it's a tool for creating
+								Technology is more than just code to me—it&apos;s a tool for creating
 								meaningful connections and solving real-world problems. I
 								believe in building inclusive, accessible, and sustainable
 								digital solutions.
 							</p>
 
 							<p>
-								When I'm not at my computer, you might find me hiking local
+								When I&apos;m not at my computer, you might find me hiking local
 								trails, experimenting with photography, reading sci-fi novels,
-								or contributing to open source projects. I'm also an active
+								or contributing to open source projects. I&apos;m also an active
 								member of the local tech community and regularly speak at
 								meetups and conferences.
 							</p>
@@ -115,10 +114,10 @@ export function PersonalSection() {
 
 						<div className="pt-4">
 							<Button asChild className="btn-neon glow-cyan font-semibold">
-								<Link href="/contact" className="group">
-									<HiMail className="mr-2 h-4 w-4" />
-									Let's Connect
-								</Link>
+									<Link href="/contact" className="group">
+										<HiMail className="mr-2 h-4 w-4" />
+										Let&apos;s Connect
+									</Link>
 							</Button>
 						</div>
 					</motion.div>
@@ -173,7 +172,7 @@ export function PersonalSection() {
 									{/* Quote section */}
 									<div className="text-center space-y-4 px-6">
 										<blockquote className="text-lg font-medium text-foreground italic">
-											"The best way to predict the future is to create it."
+											&quot;The best way to predict the future is to create it.&quot;
 										</blockquote>
 										<cite className="text-sm text-muted-foreground">
 											— Peter Drucker

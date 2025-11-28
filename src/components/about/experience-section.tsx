@@ -95,7 +95,7 @@ export function ExperienceSection() {
 					</h2>
 
 					<p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-						Over the years, I've had the opportunity to work with amazing teams
+						Over the years, I&apos;ve had the opportunity to work with amazing teams
 						and contribute to projects that have shaped my expertise.
 					</p>
 				</motion.div>

@@ -58,10 +58,10 @@ export function AboutPreview() {
 					>
 						{/* Profile Image */}
 						<div className="relative">
-							<div className="relative w-80 h-80 mx-auto lg:mx-0">
+							<div className="relative h-200 mx-auto lg:mx-0">
 								<div className="absolute inset-0 bg-linear-to-br from-primary to-accent rounded-2xl blur-2xl opacity-20 animate-glow" />
 								<Image
-									src="/images/profile/alex-chen.jpg"
+									src="/images/profile/profile-image.jpg"
 									alt="Alex Chen - Full Stack Developer"
 									fill
 									className="object-cover rounded-2xl relative z-10"
@@ -69,33 +69,6 @@ export function AboutPreview() {
 									blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKECEQERIRFRERFRQhFRAYGhsYGhcRFhshGhkeGhseFCAhJSoiFCccJxsdGCA/Fhv/wAARCAAgACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAwQFBgIB/8QALBAAAQQBAwMEAAcAAAAAAAAAAQIDEQAEBRIhQVFhIoGRsQYHEyNSocHh8P/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAHBEAAgIDAQEAAAAAAAAAAAAAAACgAQMhMkH/2gAMAwEAAhEDEQA/AKe2tZmJD2VGI/dTGXKQ0KfDSVElICwAKBUedR8rjJOTD2VGI/dTGXKQ0KfDSVElICwAKBUedR8"
 								/>
 							</div>
-						</div>
-
-						{/* Quick Stats */}
-						<div className="grid grid-cols-2 gap-6">
-							{[
-								{ label: "Years Experience", value: "5+", icon: "🚀" },
-								{ label: "Happy Clients", value: "30+", icon: "😊" },
-								{ label: "Projects", value: "50+", icon: "💼" },
-								{ label: "Countries", value: "10+", icon: "🌍" },
-							].map((stat, index) => (
-								<motion.div
-									key={stat.label}
-									initial={{ opacity: 0, scale: 0.8 }}
-									whileInView={{ opacity: 1, scale: 1 }}
-									viewport={{ once: true }}
-									transition={{ duration: 0.5, delay: index * 0.1 }}
-									className="text-center"
-								>
-									<div className="text-3xl mb-2">{stat.icon}</div>
-									<div className="text-2xl font-bold text-primary">
-										{stat.value}
-									</div>
-									<div className="text-sm text-muted-foreground">
-										{stat.label}
-									</div>
-								</motion.div>
-							))}
 						</div>
 					</motion.div>
 
@@ -122,7 +95,7 @@ export function AboutPreview() {
 						{/* Bio */}
 						<div className="space-y-4 text-muted-foreground">
 							<p>
-								I'm a full stack developer with over 5 years of experience
+								I&apos;m a full stack developer with over 5 years of experience
 								creating digital solutions that bridge the gap between design
 								and technology. My journey started with a curiosity for how
 								things work and evolved into a passion for building products
@@ -130,7 +103,7 @@ export function AboutPreview() {
 							</p>
 
 							<p>
-								When I'm not coding, you'll find me exploring new technologies,
+								When I&apos;m not coding, you&apos;ll find me exploring new technologies,
 								contributing to open source projects, or sharing knowledge
 								through technical writing and mentoring.
 							</p>

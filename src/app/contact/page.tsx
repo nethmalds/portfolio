@@ -5,11 +5,11 @@ import { ContactInfo } from "@/components/contact/contact-info";
 export const metadata: Metadata = {
 	title: "Contact",
 	description:
-		"Get in touch to discuss your project, collaborate on ideas, or just say hello. I'm always excited to work on innovative projects.",
+			"Get in touch to discuss your project, collaborate on ideas, or just say hello. I&apos;m always excited to work on innovative projects.",
 	keywords: ["contact", "collaborate", "project", "hire", "consultation"],
 	openGraph: {
 		title: "Contact - Alex Chen Portfolio",
-		description: "Let's work together on your next project.",
+		description: "Let&apos;s work together on your next project.",
 	},
 };
 
@@ -24,13 +24,13 @@ export default function ContactPage() {
 
 				<div className="space-y-4">
 					<h1 className="text-4xl lg:text-6xl font-bold tracking-tight">
-						<span className="text-foreground">Let's Build </span>
+						<span className="text-foreground">Let&apos;s Build </span>
 						<span className="gradient-text">Together</span>
 					</h1>
 					<p className="text-xl text-muted-foreground max-w-3xl mx-auto">
 						Have a project in mind? Looking for a technical partner? Or just
-						want to chat about the latest in web development? I'd love to hear
-						from you.
+							want to chat about the latest in web development? I&apos;d love to hear
+							from you.
 					</p>
 				</div>
 			</div>

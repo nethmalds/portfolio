@@ -3,81 +3,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { ProjectCard } from "@/components/project-card";
 import { HiFilter, HiX } from "react-icons/hi";
-
-// Sample projects data - TODO: Replace with your actual projects
-const projects = [
-	{
-		id: "ai-dashboard",
-		title: "AI Analytics Dashboard",
-		description:
-			"Modern dashboard for AI-powered analytics with real-time data visualization and machine learning insights.",
-		image: "/images/projects/ai-dashboard.jpg",
-		technologies: ["React", "TypeScript", "Python", "TensorFlow", "D3.js"],
-		role: "Full Stack Developer",
-		year: "2024",
-		status: "Featured",
-		category: "Web App",
-		links: {
-			live: "https://demo.alexchen.dev/ai-dashboard",
-			case: "/work/ai-dashboard",
-			repo: "https://github.com/alexchen/ai-dashboard",
-		},
-	},
-	{
-		id: "ecommerce-platform",
-		title: "E-commerce Platform",
-		description:
-			"Next-generation e-commerce solution with AI recommendations, AR try-on, and seamless payment integration.",
-		image: "/images/projects/ecommerce.jpg",
-		technologies: ["Next.js", "Stripe", "PostgreSQL", "Redis", "Docker"],
-		role: "Lead Developer",
-		year: "2024",
-		status: "Live",
-		category: "Web App",
-		links: {
-			live: "https://shop.example.com",
-			case: "/work/ecommerce-platform",
-			repo: null,
-		},
-	},
-	{
-		id: "mobile-finance-app",
-		title: "Mobile Finance App",
-		description:
-			"Secure mobile banking application with biometric authentication and real-time transaction monitoring.",
-		image: "/images/projects/finance-app.jpg",
-		technologies: ["React Native", "Node.js", "MongoDB", "AWS", "Blockchain"],
-		role: "Mobile Developer",
-		year: "2023",
-		status: "Live",
-		category: "Mobile App",
-		links: {
-			live: "https://apps.apple.com/app/financeapp",
-			case: "/work/mobile-finance-app",
-			repo: null,
-		},
-	},
-	{
-		id: "design-system",
-		title: "Component Design System",
-		description:
-			"Comprehensive design system with React components, documentation, and automated testing for enterprise applications.",
-		image: "/images/projects/design-system.jpg",
-		technologies: ["React", "Storybook", "TypeScript", "Figma", "Jest"],
-		role: "Frontend Lead",
-		year: "2023",
-		status: "Open Source",
-		category: "Design System",
-		links: {
-			live: "https://designsystem.alexchen.dev",
-			case: "/work/design-system",
-			repo: "https://github.com/alexchen/design-system",
-		},
-	},
-];
 
 const categories = ["All", "Web App", "Mobile App", "Design System", "AI/ML"];
 const technologies = [
@@ -95,6 +23,8 @@ export default function WorkGrid() {
 	const [selectedTech, setSelectedTech] = useState<string[]>([]);
 	const [showFilters, setShowFilters] = useState(false);
 	const [isDesktop, setIsDesktop] = useState(false);
+	const [projects, setProjects] = useState<any[]>([]);
+	const [loading, setLoading] = useState(true);
 
 	// Check for desktop screen size on client side only
 	useEffect(() => {
@@ -118,7 +48,7 @@ export default function WorkGrid() {
 		const matchesTech =
 			selectedTech.length === 0 ||
 			selectedTech.some((tech) =>
-				project.technologies.some((projectTech) =>
+				project.technologies.some((projectTech: string) =>
 					projectTech.toLowerCase().includes(tech.toLowerCase()),
 				),
 			);
@@ -130,6 +60,29 @@ export default function WorkGrid() {
 			prev.includes(tech) ? prev.filter((t) => t !== tech) : [...prev, tech],
 		);
 	};
+
+	// Fetch projects from the API
+	useEffect(() => {
+		let mounted = true;
+		async function load() {
+			try {
+				setLoading(true);
+				const res = await fetch('/api/projects?limit=100');
+				if (!res.ok) throw new Error('Failed to fetch projects');
+				const json = await res.json();
+				if (mounted && json?.data) setProjects(json.data);
+			} catch (err) {
+				console.error(err);
+			} finally {
+				if (mounted) setLoading(false);
+			}
+		}
+
+		load();
+		return () => {
+			mounted = false;
+		};
+	}, []);
 
 	const clearFilters = () => {
 		setSelectedCategory("All");

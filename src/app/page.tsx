@@ -1,5 +1,5 @@
 import { HeroSection } from "@/components/sections/hero-section";
-import { FeaturedWork } from "@/components/sections/featured-work";
+import FeaturedWork from "@/components/sections/featured-work";
 import { AboutPreview } from "@/components/sections/about-preview";
 import { ContactPreview } from "@/components/sections/contact-preview";
 

@@ -84,13 +84,13 @@ export function ContactPreview() {
 							</div>
 
 							<h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
-								<span className="text-foreground">Let's Build </span>
+								<span className="text-foreground">Let&apos;s Build </span>
 								<span className="gradient-text">Something Amazing</span>
 							</h2>
 
 							<p className="text-lg text-muted-foreground max-w-lg">
-								Have a project in mind? I'm always excited to collaborate on
-								innovative ideas and bring them to life. Let's discuss how we
+								Have a project in mind? I&apos;m always excited to collaborate on
+								innovative ideas and bring them to life. Let&apos;s discuss how we
 								can work together.
 							</p>
 						</div>
@@ -188,7 +188,7 @@ export function ContactPreview() {
 									<div className="text-4xl">🚀</div>
 									<h3 className="text-2xl font-bold">Ready to Start?</h3>
 									<p className="text-muted-foreground">
-										Let's discuss your project and turn your ideas into reality.
+										Let&apos;s discuss your project and turn your ideas into reality.
 										I respond to all inquiries within 24 hours.
 									</p>
 								</div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { Component, useMemo } from "react";
+import { Component, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import dynamic from "next/dynamic";
@@ -35,11 +35,12 @@ class ErrorBoundary extends Component<
 
 export function SplineViewer({ scene }: { scene?: string }) {
 	const sceneUrl = useMemo(() => scene || DEFAULT_SCENE_URL, [scene]);
+	const [splineError, setSplineError] = useState<unknown | null>(null);
 
 	return (
 		<div className="relative w-full h-full">
 			<ErrorBoundary fallback={<SplineFallback />}>
-				{sceneUrl ? (
+				{sceneUrl && !splineError ? (
 					<div className="w-full h-full flex items-center justify-center">
 						<Spline
 							scene={sceneUrl}
@@ -49,9 +50,12 @@ export function SplineViewer({ scene }: { scene?: string }) {
 							}}
 							onError={(error) => {
 								console.error("Spline scene failed to load:", error);
-								// Re-throw to let the ErrorBoundary show fallback
-								throw error;
+								// Don't re-throw — set a local error so we can render a fallback
+								setSplineError(error);
 							}}
+							// ensure we re-mount when scene changes and allow runtime options if needed
+							key={sceneUrl}
+							renderOnDemand={true}
 						/>
 					</div>
 				) : (

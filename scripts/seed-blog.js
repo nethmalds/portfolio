@@ -1,6 +1,6 @@
 // Script to seed the database with sample blog posts
 const mongoose = require('mongoose');
-require('dotenv').config({ path: '.env.local' });
+require('dotenv').config({ path: '.env' });
 
 // Blog Post Schema (copy from the model)
 const blogPostSchema = new mongoose.Schema(
