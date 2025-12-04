@@ -79,30 +79,30 @@ const socialLinks = [
 
 export function ContactPreview() {
 	return (
-		<section id="contact" className="py-20 lg:pt-32 bg-background">
-			<div className="container mx-auto max-w-screen-2xl px-4">
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+		<section id="contact" className="py-12 sm:py-16 lg:pt-32 bg-background">
+			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+				<div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
 					{/* Left Column - Content */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
-						className="space-y-8"
+						className="space-y-6 sm:space-y-8"
 					>
 						{/* Header */}
-						<div className="space-y-4">
-							<div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-4 py-2 text-sm">
+						<div className="space-y-3 sm:space-y-4">
+							<div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">
 								<span className="gradient-text font-medium">Get In Touch</span>
 								<div className="ml-2 h-2 w-2 rounded-full bg-primary animate-glow" />
 							</div>
 
-							<h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
+							<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
 								<span className="text-foreground">Let&apos;s Build </span>
 								<span className="gradient-text">Something Amazing</span>
 							</h2>
 
-							<p className="text-lg text-muted-foreground max-w-lg">
+							<p className="text-base sm:text-lg text-muted-foreground max-w-lg">
 								Have a project in mind? I&apos;m always excited to collaborate
 								on innovative ideas and bring them to life. Let&apos;s discuss
 								how we can work together.

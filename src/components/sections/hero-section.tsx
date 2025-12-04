@@ -23,21 +23,21 @@ export function HeroSection() {
 			{/* Background gradient overlay */}
 			<div className="absolute inset-0 pointer-events-none" />
 
-			<div className="container mx-auto max-w-screen-2xl px-4 relative z-10">
-				<div className="grid lg:grid-cols-7 gap-12 lg:gap-8 items-center min-h-[calc(100vh-4rem)]">
+			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8 relative z-10">
+				<div className="grid lg:grid-cols-7 gap-8 lg:gap-8 items-center min-h-[calc(100vh-4rem)]">
 					{/* Left Column - Content */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut", delay: 1 }}
-						className="space-y-8 text-center lg:text-left lg:col-span-4"
+						className="space-y-6 sm:space-y-8 text-center lg:text-left lg:col-span-4"
 					>
 						{/* Badge */}
 						<motion.div
 							initial={{ opacity: 0, scale: 0.8 }}
 							animate={{ opacity: 1, scale: 1 }}
 							transition={{ delay: 1.2, duration: 0.5 }}
-							className="inline-flex items-center rounded-full border border-border bg-muted/50 px-4 py-2 text-sm"
+							className="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm"
 						>
 							<span className="gradient-text font-medium">
 								Available for new opportunities
@@ -50,13 +50,13 @@ export function HeroSection() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 1.3, duration: 0.8 }}
-							className="space-y-4"
+							className="space-y-3 sm:space-y-4"
 						>
-							<h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
+							<h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight">
 								<span className="text-foreground">Hi, I&apos;m </span>
 								<span className="text-primary">Dasun Sri Nethmal</span>
 							</h1>
-							<h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
+							<h2 className="text-lg sm:text-xl lg:text-3xl font-medium text-muted-foreground">
 								Software Engineer, AI Enthusiast & Tech Innovator
 							</h2>
 						</motion.div>
@@ -66,7 +66,7 @@ export function HeroSection() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 1.5, duration: 0.8 }}
-							className="text-lg text-muted-foreground max-w-3xl"
+							className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto lg:mx-0"
 						>
 							I craft exceptional digital experiences through modern web
 							technologies, intelligent automation, and thoughtful user-centered
@@ -80,7 +80,7 @@ export function HeroSection() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 1.7, duration: 0.8 }}
-							className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+							className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
 						>
 							<Button
 								asChild
@@ -135,7 +135,7 @@ export function HeroSection() {
 						initial={{ opacity: 0, x: 50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8, ease: "easeOut", delay: 1.4 }}
-						className="relative h-[400px] lg:h-[1000px] lg:w-full lg:col-span-3"
+						className="relative hidden md:flex h-[300px] sm:h-[400px] md:h-[500px] lg:h-[1000px] lg:w-full lg:col-span-3"
 					>
 						<SplineViewer />
 					</motion.div>

@@ -63,19 +63,19 @@ const skills = [
 
 export function AboutPreview() {
 	return (
-		<section className="py-20 lg:py-32 bg-muted/30">
-			<div className="container mx-auto max-w-screen-2xl px-4">
-				<div className="grid lg:grid-cols-2 gap-6 items-center">
+		<section className="py-12 sm:py-16 lg:py-32 bg-muted/30">
+			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+				<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 					{/* Left Column - Image and Stats */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
-						className="space-y-8 flex justify-center"
+						className="space-y-8 flex justify-center mb-8 lg:mb-0"
 					>
 						{/* Profile Image */}
-						<div className="relative">
+						<div className="relative hidden">
 							<div className="relative h-150 w-lg mx-auto lg:mx-0">
 								<div className="absolute inset-0 bg-linear-to-br from-primary to-accent rounded-2xl blur-2xl opacity-20 animate-glow" />
 								<Image
@@ -96,22 +96,22 @@ export function AboutPreview() {
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
-						className="space-y-8"
+						className="space-y-8 "
 					>
 						{/* Header */}
-						<div className="space-y-4">
-							<div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-4 py-2 text-sm">
+						<div className="space-y-3 sm:space-y-4">
+							<div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm">
 								<span className="gradient-text font-medium">About Me</span>
 							</div>
 
-							<h2 className="text-3xl lg:text-4xl font-bold tracking-tight">
+							<h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight">
 								<span className="text-foreground">Passionate about </span>
 								<span className="gradient-text">Technology</span>
 							</h2>
 						</div>
 
 						{/* Bio */}
-						<div className="space-y-4 text-muted-foreground">
+						<div className="space-y-4 text-sm sm:text-base text-muted-foreground">
 							<p>
 								I&apos;m a Computer Science undergraduate and the Founder of
 								CodeArch. I specialize in building modern, scalable web and
@@ -132,7 +132,7 @@ export function AboutPreview() {
 						</div>
 
 						{/* Skills Grid */}
-						<div className="grid grid-cols-2 gap-4">
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
 							{skills.map((skill, index) => (
 								<motion.div
 									key={skill.category}
