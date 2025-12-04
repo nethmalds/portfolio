@@ -141,8 +141,7 @@ export default function FeaturedWork() {
 						<Button
 							asChild
 							size="lg"
-							variant="outline"
-							className="btn-neon hover:glow-cyan font-semibold"
+							className="btn-neon hover:glow-cyan font-semibold bg-transparent hover:bg-transparent border text-white hover:text-white/70"
 						>
 							<Link href="/work" className="group">
 								View All Projects

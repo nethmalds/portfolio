@@ -1,37 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import {
 	HiMail,
 	HiPhone,
 	HiLocationMarker,
-	HiArrowRight,
 } from "react-icons/hi";
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaDribbble, FaWhatsapp } from "react-icons/fa";
+import { ContactForm } from "@/components/contact/contact-form";
 
-const contactMethods = [
+const contactGroups = [
 	{
-		icon: HiMail,
-		label: "Email",
-		value: "hello@alexchen.dev",
-		href: "mailto:hello@alexchen.dev",
+		items: [
+			{
+				icon: HiMail,
+				label: "Email",
+				value: "hello@alexchen.dev",
+				href: "mailto:hello@alexchen.dev",
+			},
+			{
+				icon: HiPhone,
+				label: "Phone",
+				value: "+1 (555) 123-4567",
+				href: "tel:+15551234567",
+			},
+			{
+				icon: FaWhatsapp,
+				label: "WhatsApp",
+				value: "+1 (555) 123-4567",
+				href: "https://wa.me/15551234567",
+			},
+		],
 		primary: true,
 	},
 	{
-		icon: HiLocationMarker,
-		label: "Location",
-		value: "San Francisco, CA",
-		href: null,
-		primary: false,
-	},
-	{
-		icon: HiPhone,
-		label: "Phone",
-		value: "+1 (555) 123-4567",
-		href: "tel:+15551234567",
+		items: [
+			{
+				icon: HiLocationMarker,
+				label: "Location",
+				value: "San Francisco, CA",
+				href: null,
+			},
+		],
 		primary: false,
 	},
 ];
@@ -41,7 +53,7 @@ const socialLinks = [
 		icon: FaGithub,
 		label: "GitHub",
 		href: "https://github.com/alexchen",
-		color: "hover:text-gray-400",
+		color: "hover:text-gray-100",
 	},
 	{
 		icon: FaLinkedin,
@@ -97,43 +109,59 @@ export function ContactPreview() {
 
 						{/* Contact Methods */}
 						<div className="space-y-4">
-							{contactMethods.map((method, index) => (
+							{contactGroups.map((group, groupIndex) => (
 								<motion.div
-									key={method.label}
+									key={groupIndex}
 									initial={{ opacity: 0, x: -20 }}
 									whileInView={{ opacity: 1, x: 0 }}
 									viewport={{ once: true }}
-									transition={{ duration: 0.5, delay: index * 0.1 }}
-									className={method.href ? "cursor-pointer" : ""}
+									transition={{ duration: 0.5, delay: groupIndex * 0.1 }}
 								>
 									<Card
-										className={`transition-all duration-300 ${method.primary ? "border-primary/50 hover:border-primary" : "hover:shadow-md"}`}
+										className={`transition-all p-0 duration-300 ${group.primary ? "border-primary/50 hover:border-primary py-4 px-8" : "hover:shadow-md"}`}
 									>
-										<CardContent className="p-4">
-											<div className="flex items-center space-x-4">
-												<div
-													className={`flex h-10 w-10 items-center justify-center rounded-lg ${method.primary ? "bg-primary text-primary-foreground" : "bg-muted"}`}
-												>
-													<method.icon className="h-5 w-5" />
-												</div>
-												<div className="flex-1">
-													<div className="text-sm text-muted-foreground">
-														{method.label}
-													</div>
-													{method.href ? (
-														<Link
-															href={method.href}
-															className="text-foreground hover:text-primary transition-colors font-medium"
-														>
-															{method.value}
-														</Link>
+										<CardContent className="p-0">
+											{group.items.map((item) => (
+												<div key={item.label}>
+													{item.label === "Location" ? (
+														<iframe
+															src="https://maps.google.com/maps?q=San%20Francisco,%20CA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+															width="100%"
+															height="300"
+															style={{ border: 0 }}
+															allowFullScreen
+															loading="lazy"
+															className="rounded-lg"
+															title="Location Map"
+														></iframe>
 													) : (
-														<div className="text-foreground font-medium">
-															{method.value}
+														<div className="flex items-center space-x-4 py-3">
+															<div
+																className={`flex h-10 w-10 items-center justify-center rounded-lg ${group.primary ? "bg-primary text-primary-foreground" : "bg-muted"}`}
+															>
+																<item.icon className="h-5 w-5" />
+															</div>
+															<div className="flex-1">
+																<div className="text-sm text-muted-foreground">
+																	{item.label}
+																</div>
+																{item.href ? (
+																	<Link
+																		href={item.href}
+																		className="text-foreground hover:text-primary transition-colors font-medium"
+																	>
+																		{item.value}
+																	</Link>
+																) : (
+																	<div className="text-foreground font-medium">
+																		{item.value}
+																	</div>
+																)}
+															</div>
 														</div>
 													)}
 												</div>
-											</div>
+											))}
 										</CardContent>
 									</Card>
 								</motion.div>
@@ -174,48 +202,14 @@ export function ContactPreview() {
 						</motion.div>
 					</motion.div>
 
-					{/* Right Column - CTA */}
+					{/* Right Column - Contact Form */}
 					<motion.div
 						initial={{ opacity: 0, x: 50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
-						className="lg:text-right"
 					>
-						<Card className="glass border-primary/20 hover:border-primary/40 transition-all duration-300">
-							<CardContent className="p-8 text-center space-y-6">
-								<div className="space-y-4">
-									<div className="text-4xl">🚀</div>
-									<h3 className="text-2xl font-bold">Ready to Start?</h3>
-									<p className="text-muted-foreground">
-										Let&apos;s discuss your project and turn your ideas into reality.
-										I respond to all inquiries within 24 hours.
-									</p>
-								</div>
-
-								<div className="space-y-4">
-									<Button
-										asChild
-										size="lg"
-										className="w-full btn-neon glow-cyan font-semibold"
-									>
-										<Link href="/contact" className="group">
-											Start a Project
-											<HiArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-										</Link>
-									</Button>
-
-									<Button
-										asChild
-										variant="outline"
-										size="lg"
-										className="w-full hover:glow-magenta font-semibold"
-									>
-										<Link href="/work">View My Work</Link>
-									</Button>
-								</div>
-							</CardContent>
-						</Card>
+						<ContactForm />
 					</motion.div>
 				</div>
 			</div>

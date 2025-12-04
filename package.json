@@ -12,7 +12,8 @@
     "precommit": "npm run lint && npm run format-write",
     "format-write": "biome format --write ./src",
     "seed:blog": "node scripts/seed-blog.js",
-    "seed:projects": "node scripts/seed-projects.js"
+    "seed:projects": "node scripts/seed-projects.js",
+    "seed:certifications": "node scripts/seed-certifications.js"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

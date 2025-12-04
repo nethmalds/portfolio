@@ -171,7 +171,7 @@ const sampleProjects = [
     role: "Mobile Application Developer",
     year: "2025",
     status: "Completed",
-    category: "Mobile Application",
+    category: "Mobile App",
     links: {
       live: null,
       case: "/projects/plant-ecommerce",

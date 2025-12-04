@@ -17,8 +17,8 @@ import {
 
 const navigation = [
 	{ name: "Work", href: "/work" },
-	{ name: "About", href: "/about" },
-	{ name: "Blog", href: "/blog" },
+	/* { name: "About", href: "/about" },
+	{ name: "Blog", href: "/blog" }, */
 	{ name: "Contact", href: "/contact" },
 ];
 
@@ -29,7 +29,7 @@ export function Header() {
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollY = window.scrollY;
-			setScrolled(scrollY > 200);
+			setScrolled(scrollY > 80);
 		};
 
 		window.addEventListener("scroll", handleScroll);

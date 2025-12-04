@@ -1,5 +1,28 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
+// Project category enum
+export type ProjectCategory = 'Web App' | 'Mobile App' | 'System' | 'ML Model';
+
+// Project data type for API responses (without MongoDB Document)
+export interface ProjectData {
+  id: string;
+  title: string;
+  description: string;
+  image?: string;
+  technologies: string[];
+  role?: string;
+  year?: string;
+  status?: string;
+  category?: ProjectCategory;
+  links: {
+    live?: string | null;
+    case: string;
+    repo?: string | null;
+  };
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 // Project interface
 export interface IProject extends Document {
   title: string;
@@ -9,7 +32,7 @@ export interface IProject extends Document {
   role?: string;
   year?: string;
   status?: string;
-  category?: string;
+  category?: ProjectCategory;
   links: {
     live?: string | null;
     case: string;
@@ -28,7 +51,7 @@ const projectSchema = new Schema<IProject>(
     role: { type: String, trim: true },
     year: { type: String, trim: true },
     status: { type: String, trim: true },
-    category: { type: String, trim: true, index: true },
+    category: { type: String, enum: ['Web App', 'Mobile App', 'System', 'ML Model'], trim: true, index: true },
     links: {
       live: { type: String, trim: true },
       case: { type: String, required: true, trim: true },

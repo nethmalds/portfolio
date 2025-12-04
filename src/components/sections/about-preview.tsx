@@ -7,7 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import {
 	HiDownload,
-	HiArrowRight,
+	HiMail,
 	HiCode,
 	HiDesktopComputer,
 	HiDeviceMobile,
@@ -47,24 +47,24 @@ export function AboutPreview() {
 	return (
 		<section className="py-20 lg:py-32 bg-muted/30">
 			<div className="container mx-auto max-w-screen-2xl px-4">
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+				<div className="grid lg:grid-cols-2 gap-6 items-center">
 					{/* Left Column - Image and Stats */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						whileInView={{ opacity: 1, x: 0 }}
 						viewport={{ once: true }}
 						transition={{ duration: 0.8 }}
-						className="space-y-8"
+						className="space-y-8 flex justify-center"
 					>
 						{/* Profile Image */}
 						<div className="relative">
-							<div className="relative h-200 mx-auto lg:mx-0">
+							<div className="relative h-150 w-lg mx-auto lg:mx-0">
 								<div className="absolute inset-0 bg-linear-to-br from-primary to-accent rounded-2xl blur-2xl opacity-20 animate-glow" />
 								<Image
-									src="/images/profile/profile-image.jpg"
+									src="/images/profile/profile.jpg"
 									alt="Alex Chen - Full Stack Developer"
 									fill
-									className="object-cover rounded-2xl relative z-10"
+									className="object-cover object-top rounded-2xl relative z-10"
 									placeholder="blur"
 									blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKECEQERIRFRERFRQhFRAYGhsYGhcRFhshGhkeGhseFCAhJSoiFCccJxsdGCA/Fhv/wAARCAAgACgDASIAAhEBAxEB/8QAGQAAAwEBAQAAAAAAAAAAAAAAAwQFBgIB/8QALBAAAQQBAwMEAAcAAAAAAAAAAQIDEQAEBRIhQVFhIoGRsQYHEyNSocHh8P/EABUBAQEAAAAAAAAAAAAAAAAAAAAB/8QAHBEAAgIDAQEAAAAAAAAAAAAAAACgAQMhMkH/2gAMAwEAAhEDEQA/AKe2tZmJD2VGI/dTGXKQ0KfDSVElICwAKBUedR8rjJOTD2VGI/dTGXKQ0KfDSVElICwAKBUedR8"
 								/>
@@ -145,16 +145,15 @@ export function AboutPreview() {
 
 						{/* CTAs */}
 						<div className="flex flex-col sm:flex-row gap-4">
-							<Button asChild className="btn-neon glow-cyan font-semibold">
+							{/* <Button asChild className="btn-neon glow-cyan font-semibold">
 								<Link href="/about" className="group">
 									Learn More
 									<HiArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 								</Link>
-							</Button>
+							</Button> */}
 
 							<Button
 								asChild
-								variant="outline"
 								className="font-semibold hover:glow-magenta"
 							>
 								<a
@@ -167,6 +166,17 @@ export function AboutPreview() {
 									<HiDownload className="mr-2 h-4 w-4" />
 									Download Resume
 								</a>
+							</Button>
+							<Button
+								asChild
+								variant="outline"
+								size="lg"
+								className="font-semibold hover:glow-magenta hover:text-white/70"
+							>
+								<Link href="/contact" className="group">
+									<HiMail className="mr-2 h-4 w-4" />
+									Get In Touch
+								</Link>
 							</Button>
 						</div>
 					</motion.div>

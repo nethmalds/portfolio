@@ -10,28 +10,27 @@ import { HiDownload, HiMail } from "react-icons/hi";
 export function AboutHero() {
 	const [imageError, setImageError] = useState(false);
 	return (
-		<section className="py-20 lg:py-32 bg-background">
+		<section className="py-20 lg:pt-56 bg-background">
 			<div className="container mx-auto max-w-screen-2xl px-4">
-				<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+				<div className="grid lg:grid-cols-2 gap-6 items-center">
 					{/* Left Column - Image */}
 					<motion.div
 						initial={{ opacity: 0, x: -50 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{ duration: 0.8 }}
-						className="relative"
+						className="relative justify-center flex"
 					>
-						<div className="relative w-full mx-auto lg:mx-0">
+						<div className="relative mx-auto lg:mx-0">
 							<div className="relative">
 								<div className="absolute inset-0 bg-linear-to-br from-primary/20 to-accent/20 rounded-2xl blur-3xl" />
-								<div className="relative z-10 aspect-square rounded-2xl overflow-hidden glass border-2 border-primary/20">
-									{/* Profile image with fallback placeholder */}
+								<div className="relative z-10 h-150 w-120 rounded-2xl overflow-hidden glass border-2 border-primary/20">
 									<div className="relative w-full h-full">
 										{!imageError ? (
 											<Image
-												src="/images/profile/profile-image.jpg"
+												src="/images/profile/profile.jpg"
 												alt="Dasun Sri profile"
 												fill
-												className="object-cover"
+												className="object-cover object-top"
 												onError={() => setImageError(true)}
 												priority
 											/>
@@ -109,9 +108,10 @@ export function AboutHero() {
 							<Button
 								asChild
 								variant="outline"
-								className="font-semibold hover:glow-magenta"
+								size="lg"
+								className="font-semibold hover:glow-magenta hover:text-white/70"
 							>
-								<Link href="/contact">
+								<Link href="/contact" className="group">
 									<HiMail className="mr-2 h-4 w-4" />
 									Get In Touch
 								</Link>

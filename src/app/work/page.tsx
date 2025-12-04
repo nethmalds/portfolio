@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
 	return (
-		<div className="container mx-auto max-w-screen-2xl px-4 py-16">
+		<div className="container mx-auto max-w-screen-2xl px-4 py-20">
 			<div className="space-y-8 mb-16">
 				<div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-4 py-2 text-sm">
 					<span className="gradient-text font-medium">Portfolio</span>

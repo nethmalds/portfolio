@@ -86,7 +86,7 @@ export function HeroSection() {
 								size="lg"
 								className="font-semibold hover:glow-magenta hover:text-white/70"
 							>
-								<Link href="/contact" className="group">
+								<Link href="#contact" className="group">
 									<HiMail className="mr-2 h-4 w-4" />
 									Get In Touch
 								</Link>
