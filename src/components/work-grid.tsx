@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ProjectCard } from "@/components/project-card";
-import { HiFilter, HiX } from "react-icons/hi";
+import { HiArrowLeft, HiX } from "react-icons/hi";
 import { ProjectData, ProjectCategory } from "@/models/projects";
+import Link from "next/link";
 
 const categoryValues: ProjectCategory[] = ['Web App', 'Mobile App', 'System', 'ML Model'];
 const categories = ["All", ...categoryValues];
@@ -138,6 +139,25 @@ export default function WorkGrid() {
 							</Button>
 						</motion.div>
 					)}
+
+				<motion.div
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.8 }}
+					className="text-center"
+				>
+					<Button
+						asChild
+						size="lg"
+						className="btn-neon hover:glow-cyan font-semibold bg-transparent hover:bg-transparent border text-white hover:text-white/70"
+					>
+						<Link href="/" className="group">
+							<HiArrowLeft className="mr-2 h-5 w-5 inline-block group-hover:-translate-x-1 transition-transform" />
+							Back to Home
+						</Link>
+					</Button>
+				</motion.div>
 			</>
 		)}
 	</div>

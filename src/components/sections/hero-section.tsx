@@ -5,12 +5,23 @@ import { Button } from "@/components/ui/button";
 import { SplineViewer } from "@/components/spline-viewer";
 import Link from "next/link";
 import { HiArrowRight, HiMail } from "react-icons/hi";
+import Aurora from "../ui/aurora";
 
 export function HeroSection() {
 	return (
 		<section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-			{/* Background gradient */}
-			<div className="absolute inset-0 bg-linear-to-br from-blue-950 via-background to-muted" />
+			{/* Plasma Background Animation */}
+			<div className="absolute inset-0">
+				<Aurora
+					colorStops={["#00ffff", "#0080ff", "#00ffff"]}
+					blend={0.5}
+					amplitude={1.0}
+					speed={0.5}
+				/>
+			</div>
+
+			{/* Background gradient overlay */}
+			<div className="absolute inset-0 pointer-events-none" />
 
 			<div className="container mx-auto max-w-screen-2xl px-4 relative z-10">
 				<div className="grid lg:grid-cols-7 gap-12 lg:gap-8 items-center min-h-[calc(100vh-4rem)]">
@@ -43,10 +54,10 @@ export function HeroSection() {
 						>
 							<h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight">
 								<span className="text-foreground">Hi, I&apos;m </span>
-								<span className="gradient-text">Dasun Sri Nethmal</span>
+								<span className="text-primary">Dasun Sri Nethmal</span>
 							</h1>
 							<h2 className="text-xl sm:text-2xl lg:text-3xl font-medium text-muted-foreground">
-								Full Stack Developer & Designer
+								Software Engineer, AI Enthusiast & Tech Innovator
 							</h2>
 						</motion.div>
 
@@ -57,9 +68,9 @@ export function HeroSection() {
 							transition={{ delay: 1.5, duration: 0.8 }}
 							className="text-lg text-muted-foreground max-w-3xl"
 						>
-							I craft exceptional digital experiences through modern web
-							technologies, AI integration, and user-centered design. Building
-							the future, one pixel at a time.
+							I craft exceptional digital experiences through modern web technologies, intelligent automation, and thoughtful user-centered design. 
+							My work blends full-stack engineering, AI-powered features, and scalable architectures to create products that feel seamless, intuitive, 
+							and future-ready.
 						</motion.p>
 
 						{/* CTAs */}
@@ -94,7 +105,7 @@ export function HeroSection() {
 						</motion.div>
 
 						{/* Quick stats */}
-						<motion.div
+						{/* <motion.div
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 1.9, duration: 0.8 }}
@@ -114,7 +125,7 @@ export function HeroSection() {
 									</div>
 								</div>
 							))}
-						</motion.div>
+						</motion.div> */}
 					</motion.div>
 
 					{/* Right Column - 3D Scene */}

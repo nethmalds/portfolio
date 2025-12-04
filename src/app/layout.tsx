@@ -16,42 +16,49 @@ const geistMono = Geist_Mono({
 	subsets: ["latin"],
 });
 
-// TODO: Replace with your actual portfolio metadata
 export const metadata: Metadata = {
 	title: {
-		default: "Alex Chen - Full Stack Developer & Designer",
-		template: "%s | Alex Chen Portfolio",
+		default: "Dasun Sri Nethmal - Full Stack Developer & Founder of CodeArch",
+		template: "%s | Dasun Sri Nethmal Portfolio",
 	},
 	description:
-		"Full stack developer specializing in modern web applications, AI integration, and user-centered design. Building the future, one pixel at a time.",
+		"Computer Science undergraduate and Founder of CodeArch, specializing in modern web and mobile applications using Next.js, Nest.js, Flutter, Laravel, and .NET. Expert in full-stack development, serverless systems, and blockchain technology.",
 	keywords: [
 		"Full Stack Developer",
-		"React",
 		"Next.js",
+		"Nest.js",
+		"Flutter",
+		"Laravel",
+		".NET",
 		"TypeScript",
-		"AI",
-		"Web Design",
-		"Frontend",
-		"Backend",
+		"React",
+		"MongoDB",
+		"MySQL",
+		"Blockchain",
+		"Smart Contracts",
+		"DApps",
+		"Microservices",
+		"UI/UX Design",
+		"CodeArch",
 	],
-	authors: [{ name: "Alex Chen" }],
-	creator: "Alex Chen",
+	authors: [{ name: "Dasun Sri Nethmal" }],
+	creator: "Dasun Sri Nethmal",
 	openGraph: {
 		type: "website",
 		locale: "en_US",
-		title: "Alex Chen - Full Stack Developer & Designer",
+		title: "Dasun Sri Nethmal - Full Stack Developer & Founder of CodeArch",
 		description:
-			"Full stack developer specializing in modern web applications, AI integration, and user-centered design.",
-		siteName: "Alex Chen Portfolio",
-		url: "https://alexchen.dev", // TODO: Replace with your actual domain
+			"Computer Science undergraduate and Founder of CodeArch, specializing in modern web and mobile applications using Next.js, Nest.js, Flutter, Laravel, and .NET.",
+		siteName: "Dasun Sri Nethmal Portfolio",
+		url: "https://dasun-sri.dev",
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Alex Chen - Full Stack Developer & Designer",
-		description: "Building the future, one pixel at a time.",
-		creator: "@alexchen_dev", // TODO: Replace with your Twitter handle
+		title: "Dasun Sri Nethmal - Full Stack Developer & Founder of CodeArch",
+		description: "Building modern web and mobile applications with cutting-edge technology.",
+		creator: "@dasun_sri",
 	},
-	metadataBase: new URL("https://alexchen.dev"), // TODO: Replace with your actual domain
+	metadataBase: new URL("https://dasun-sri.dev"),
 	robots: {
 		index: true,
 		follow: true,

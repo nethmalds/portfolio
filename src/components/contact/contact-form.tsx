@@ -13,12 +13,12 @@ type FormData = ContactFormSchema;
 type FormErrors = Partial<Record<keyof FormData, string>>;
 
 const budgetOptions = [
-	"< $10k",
-	"$10k - $25k",
-	"$25k - $50k",
-	"$50k - $100k",
-	"$100k+",
-	"Let&apos;s discuss",
+	"< $150",
+	"$150 - $500",
+	"$500 - $1500",
+	"$1500 - $3000",
+	"$3000+",
+	"Let's discuss",
 ];
 
 const timelineOptions = [
@@ -26,15 +26,18 @@ const timelineOptions = [
 	"Within 1 month",
 	"2-3 months",
 	"3-6 months",
-	"6+ months",
+	"6-12 months",
+	"1 year+",
 	"Just exploring",
 ];
 
 const subjectOptions = [
 	"Web Development Project",
 	"Mobile App Development",
-	"Consulting & Strategy",
-	"Code Review & Audit",
+	"Customized Software Solution",
+	"UI/UX Design",
+	"Video Editing & Animation",
+	"System Architecture Design",
 	"Technical Mentoring",
 	"Speaking Opportunity",
 	"Collaboration",

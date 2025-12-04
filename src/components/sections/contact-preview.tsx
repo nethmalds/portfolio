@@ -8,7 +8,7 @@ import {
 	HiPhone,
 	HiLocationMarker,
 } from "react-icons/hi";
-import { FaGithub, FaLinkedin, FaTwitter, FaDribbble, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaStackOverflow, FaPinterest, FaWhatsapp } from "react-icons/fa";
 import { ContactForm } from "@/components/contact/contact-form";
 
 const contactGroups = [
@@ -17,20 +17,20 @@ const contactGroups = [
 			{
 				icon: HiMail,
 				label: "Email",
-				value: "hello@alexchen.dev",
-				href: "mailto:hello@alexchen.dev",
+				value: "dasunsrin@gmail.com",
+				href: "mailto:dasunsrin@gmail.com",
 			},
 			{
 				icon: HiPhone,
 				label: "Phone",
-				value: "+1 (555) 123-4567",
-				href: "tel:+15551234567",
+				value: "+94 74 153 0326",
+				href: "tel:+94741530326",
 			},
 			{
 				icon: FaWhatsapp,
 				label: "WhatsApp",
-				value: "+1 (555) 123-4567",
-				href: "https://wa.me/15551234567",
+				value: "+94 74 153 0326",
+				href: "https://wa.me/94741530326",
 			},
 		],
 		primary: true,
@@ -52,32 +52,32 @@ const socialLinks = [
 	{
 		icon: FaGithub,
 		label: "GitHub",
-		href: "https://github.com/alexchen",
+		href: "https://github.com/nethmalds",
 		color: "hover:text-gray-100",
 	},
 	{
 		icon: FaLinkedin,
 		label: "LinkedIn",
-		href: "https://linkedin.com/in/alexchen",
+		href: "https://www.linkedin.com/in/dasun-sri",
 		color: "hover:text-blue-400",
 	},
 	{
-		icon: FaTwitter,
-		label: "Twitter",
-		href: "https://twitter.com/alexchen_dev",
-		color: "hover:text-blue-400",
+		icon: FaStackOverflow,
+		label: "Stack Overflow",
+		href: "https://stackoverflow.com/users/30965245/dasun-sri-nethmal",
+		color: "hover:text-orange-400",
 	},
 	{
-		icon: FaDribbble,
-		label: "Dribbble",
-		href: "https://dribbble.com/alexchen",
-		color: "hover:text-pink-400",
+		icon: FaPinterest,
+		label: "Pinterest",
+		href: "https://pin.it/7Dwp8e31i",
+		color: "hover:text-red-400",
 	},
 ];
 
 export function ContactPreview() {
 	return (
-		<section className="py-20 lg:py-32 bg-background">
+		<section id="contact" className="py-20 lg:pt-32 bg-background">
 			<div className="container mx-auto max-w-screen-2xl px-4">
 				<div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 					{/* Left Column - Content */}
@@ -108,7 +108,7 @@ export function ContactPreview() {
 						</div>
 
 						{/* Contact Methods */}
-						<div className="space-y-4">
+						<div className="space-y-6">
 							{contactGroups.map((group, groupIndex) => (
 								<motion.div
 									key={groupIndex}
@@ -125,13 +125,13 @@ export function ContactPreview() {
 												<div key={item.label}>
 													{item.label === "Location" ? (
 														<iframe
-															src="https://maps.google.com/maps?q=San%20Francisco,%20CA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+															src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3963.9329533635314!2d79.99770167499298!3d6.530152393462526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzEnNDguNiJOIDgwwrAwMCcwMS4wIkU!5e0!3m2!1sen!2slk!4v1764856303973!5m2!1sen!2slk"
 															width="100%"
 															height="300"
 															style={{ border: 0 }}
 															allowFullScreen
 															loading="lazy"
-															className="rounded-lg"
+															className="rounded-lg opacity-65 hover:opacity-100 transition-opacity duration-300"
 															title="Location Map"
 														></iframe>
 													) : (

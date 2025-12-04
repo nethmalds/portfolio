@@ -21,25 +21,28 @@ const skills = [
 		technologies: [
 			"React",
 			"Next.js",
+			"JavaScript",
 			"TypeScript",
 			"Tailwind CSS",
-			"Framer Motion",
+			"Bootstrap",
+			"HTML5",
+			"CSS3",
 		],
 	},
 	{
 		category: "Backend",
 		icon: HiCode,
-		technologies: ["Node.js", "Python", "PostgreSQL", "MongoDB", "GraphQL"],
+		technologies: ["Node.js", "C# .NET", "Express.js", "MySQL", "MongoDB", "Laravel", "PHP", "Python"],
 	},
 	{
 		category: "Mobile",
 		icon: HiDeviceMobile,
-		technologies: ["React Native", "Flutter", "Swift", "Kotlin", "Expo"],
+		technologies: ["Dart", "Flutter", "C++", "Kotlin"],
 	},
 	{
 		category: "Emerging",
 		icon: HiCube,
-		technologies: ["AI/ML", "Blockchain", "WebGL", "WebAssembly", "AR/VR"],
+		technologies: ["AI/ML", "Blockchain", "MicroServices", "Serverless", "Deep Learning"],
 	},
 ];
 
@@ -95,17 +98,15 @@ export function AboutPreview() {
 						{/* Bio */}
 						<div className="space-y-4 text-muted-foreground">
 							<p>
-								I&apos;m a full stack developer with over 5 years of experience
-								creating digital solutions that bridge the gap between design
-								and technology. My journey started with a curiosity for how
-								things work and evolved into a passion for building products
-								that make a difference.
+								I&apos;m a Computer Science undergraduate and the Founder of CodeArch. I specialize in building modern, scalable web and mobile 
+								applications using technologies like Next.js, Nest.js, Flutter, Laravel, and .NET. My work spans full-stack development, serverless 
+								systems, authentication workflows, and database-driven platforms.
 							</p>
 
 							<p>
-								When I&apos;m not coding, you&apos;ll find me exploring new technologies,
-								contributing to open source projects, or sharing knowledge
-								through technical writing and mentoring.
+								I also bring a strong creative edge with experience in UI/UX design and digital content creation, allowing me to craft products that 
+								are both functional and visually engaging. Currently, I&apos;m exploring blockchain, smart contracts, DApps, and microservices architecture 
+								to expand my capabilities in cutting-edge software engineering.
 							</p>
 						</div>
 
@@ -120,7 +121,7 @@ export function AboutPreview() {
 									transition={{ duration: 0.5, delay: index * 0.1 }}
 								>
 									<Card className="h-full hover:shadow-lg transition-shadow">
-										<CardContent className="p-4">
+										<CardContent className="py-2">
 											<div className="flex items-center space-x-3 mb-3">
 												<skill.icon className="h-5 w-5 text-primary" />
 												<h3 className="font-semibold text-sm">
@@ -173,7 +174,7 @@ export function AboutPreview() {
 								size="lg"
 								className="font-semibold hover:glow-magenta hover:text-white/70"
 							>
-								<Link href="/contact" className="group">
+								<Link href="#contact" className="group">
 									<HiMail className="mr-2 h-4 w-4" />
 									Get In Touch
 								</Link>
