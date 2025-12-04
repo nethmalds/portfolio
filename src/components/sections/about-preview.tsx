@@ -32,7 +32,16 @@ const skills = [
 	{
 		category: "Backend",
 		icon: HiCode,
-		technologies: ["Node.js", "C# .NET", "Express.js", "MySQL", "MongoDB", "Laravel", "PHP", "Python"],
+		technologies: [
+			"Node.js",
+			"C# .NET",
+			"Express.js",
+			"MySQL",
+			"MongoDB",
+			"Laravel",
+			"PHP",
+			"Python",
+		],
 	},
 	{
 		category: "Mobile",
@@ -42,7 +51,13 @@ const skills = [
 	{
 		category: "Emerging",
 		icon: HiCube,
-		technologies: ["AI/ML", "Blockchain", "MicroServices", "Serverless", "Deep Learning"],
+		technologies: [
+			"AI/ML",
+			"Blockchain",
+			"MicroServices",
+			"Serverless",
+			"Deep Learning",
+		],
 	},
 ];
 
@@ -98,15 +113,21 @@ export function AboutPreview() {
 						{/* Bio */}
 						<div className="space-y-4 text-muted-foreground">
 							<p>
-								I&apos;m a Computer Science undergraduate and the Founder of CodeArch. I specialize in building modern, scalable web and mobile 
-								applications using technologies like Next.js, Nest.js, Flutter, Laravel, and .NET. My work spans full-stack development, serverless 
-								systems, authentication workflows, and database-driven platforms.
+								I&apos;m a Computer Science undergraduate and the Founder of
+								CodeArch. I specialize in building modern, scalable web and
+								mobile applications using technologies like Next.js, Nest.js,
+								Flutter, Laravel, and .NET. My work spans full-stack
+								development, serverless systems, authentication workflows, and
+								database-driven platforms.
 							</p>
 
 							<p>
-								I also bring a strong creative edge with experience in UI/UX design and digital content creation, allowing me to craft products that 
-								are both functional and visually engaging. Currently, I&apos;m exploring blockchain, smart contracts, DApps, and microservices architecture 
-								to expand my capabilities in cutting-edge software engineering.
+								I also bring a strong creative edge with experience in UI/UX
+								design and digital content creation, allowing me to craft
+								products that are both functional and visually engaging.
+								Currently, I&apos;m exploring blockchain, smart contracts,
+								DApps, and microservices architecture to expand my capabilities
+								in cutting-edge software engineering.
 							</p>
 						</div>
 
@@ -153,10 +174,7 @@ export function AboutPreview() {
 								</Link>
 							</Button> */}
 
-							<Button
-								asChild
-								className="font-semibold hover:glow-magenta"
-							>
+							<Button asChild className="font-semibold hover:glow-magenta">
 								<a
 									href="/resume/alex-chen-resume.pdf"
 									download

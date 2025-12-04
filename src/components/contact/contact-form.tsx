@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import { toast } from "sonner";
-import { /* motion */ } from "framer-motion";
+import {/* motion */} from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { HiPaperAirplane, HiExclamation } from "react-icons/hi";
-import { contactFormSchema, ContactFormSchema } from "@/validation/contact-form";
-
+import {
+	contactFormSchema,
+	ContactFormSchema,
+} from "@/validation/contact-form";
 
 type FormData = ContactFormSchema;
 type FormErrors = Partial<Record<keyof FormData, string>>;
@@ -45,68 +47,79 @@ const subjectOptions = [
 ];
 
 export function ContactForm() {
+	const [formData, setFormData] = useState<FormData>({
+		name: "",
+		email: "",
+		company: "",
+		subject: "",
+		message: "",
+		budget: "",
+		timeline: "",
+	});
+	const [errors, setErrors] = useState<FormErrors>({});
+	const [touched, setTouched] = useState<
+		Partial<Record<keyof FormData, boolean>>
+	>({});
+	const [isSubmitting, setIsSubmitting] = useState(false);
+	// submit status was unused; keeping a placeholder in case it's needed in future
+	// const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-	       const [formData, setFormData] = useState<FormData>({
-		       name: "",
-		       email: "",
-		       company: "",
-		       subject: "",
-		       message: "",
-		       budget: "",
-		       timeline: "",
-	       });
-	       const [errors, setErrors] = useState<FormErrors>({});
-	       const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
-	       const [isSubmitting, setIsSubmitting] = useState(false);
-		// submit status was unused; keeping a placeholder in case it's needed in future
-		// const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+	// Validate a single field
+	const validateField = (name: keyof FormData, value: unknown) => {
+		// Use safeParse + flatten to reliably get the field error messages from Zod
+		const res = contactFormSchema
+			.pick({ [name]: true })
+			.safeParse({ [name]: value } as Record<string, unknown>);
+		if (res.success) {
+			setErrors((prev) => ({ ...prev, [name]: undefined }));
+			return;
+		}
 
-		       // Validate a single field
-					const validateField = (name: keyof FormData, value: unknown) => { 
-					       // Use safeParse + flatten to reliably get the field error messages from Zod
-						   const res = contactFormSchema.pick({ [name]: true }).safeParse({ [name]: value } as Record<string, unknown>);
-					       if (res.success) {
-						       setErrors((prev) => ({ ...prev, [name]: undefined }));
-						       return;
-					       }
+		// Flatten gives { formErrors, fieldErrors }
+		const { fieldErrors } = res.error.flatten();
+		// fieldErrors[name] is an array of messages
+		// cast to indexable record to avoid excess type strictness
+		const msgs = (fieldErrors as Record<string, string[] | undefined>)[
+			name as string
+		];
+		const message =
+			Array.isArray(msgs) && msgs.length > 0 ? msgs[0] : undefined;
+		setErrors((prev) => ({
+			...prev,
+			[name]: message || "This field is required",
+		}));
+	};
 
-					       // Flatten gives { formErrors, fieldErrors }
-					       const { fieldErrors } = res.error.flatten();
-					       // fieldErrors[name] is an array of messages
-						   // cast to indexable record to avoid excess type strictness
-						   const msgs = (fieldErrors as Record<string, string[] | undefined>)[name as string];
-					       const message = Array.isArray(msgs) && msgs.length > 0 ? msgs[0] : undefined;
-					       setErrors((prev) => ({ ...prev, [name]: message || "This field is required" }));
-				       };
+	// Validate all fields
+	const validateForm = (): boolean => {
+		// mark all fields as touched so validation messages appear after submit
+		setTouched((prev) => {
+			const allKeys = Object.keys(formData) as (keyof FormData)[];
+			const next = { ...prev } as Partial<Record<keyof FormData, boolean>>;
+			for (const k of allKeys) next[k] = true;
+			return next;
+		});
+		const res = contactFormSchema.safeParse(formData);
+		if (res.success) {
+			setErrors({});
+			return true;
+		}
 
-	       // Validate all fields
-			       const validateForm = (): boolean => {
-				       // mark all fields as touched so validation messages appear after submit
-				       setTouched((prev) => {
-					       const allKeys = Object.keys(formData) as (keyof FormData)[];
-					       const next = { ...prev } as Partial<Record<keyof FormData, boolean>>;
-					       for (const k of allKeys) next[k] = true;
-					       return next;
-				       });
-			       const res = contactFormSchema.safeParse(formData);
-			       if (res.success) {
-				       setErrors({});
-				       return true;
-			       }
+		// Flatten the error object to map field -> [messages]
+		const { fieldErrors } = res.error.flatten();
+		const mapped: FormErrors = {};
+		for (const key of Object.keys(fieldErrors)) {
+			const msgs = (fieldErrors as Record<string, string[] | undefined>)[
+				key as string
+			];
+			if (Array.isArray(msgs) && msgs.length > 0) {
+				mapped[key as keyof FormData] = msgs[0];
+			}
+		}
 
-			       // Flatten the error object to map field -> [messages]
-			       const { fieldErrors } = res.error.flatten();
-			       const mapped: FormErrors = {};
-				       for (const key of Object.keys(fieldErrors)) {
-					       const msgs = (fieldErrors as Record<string, string[] | undefined>)[key as string];
-				       if (Array.isArray(msgs) && msgs.length > 0) {
-					       mapped[key as keyof FormData] = msgs[0];
-				       }
-			       }
-
-			       setErrors(mapped);
-			       return false;
-		       };
+		setErrors(mapped);
+		return false;
+	};
 
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
@@ -118,9 +131,9 @@ export function ContactForm() {
 
 		try {
 			// Send all form data to email API
-			const response = await fetch('/api/contact', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
+			const response = await fetch("/api/contact", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					name: formData.name,
 					email: formData.email,
@@ -129,13 +142,13 @@ export function ContactForm() {
 					message: formData.message,
 					budget: formData.budget,
 					timeline: formData.timeline,
-				})
+				}),
 			});
 
 			const responseData = await response.json();
 
 			if (!response.ok) {
-				throw new Error(responseData.error || 'Failed to send message');
+				throw new Error(responseData.error || "Failed to send message");
 			}
 
 			// setSubmitStatus("success");
@@ -149,37 +162,41 @@ export function ContactForm() {
 				timeline: "",
 			});
 			toast.success("Email sent successfully!", {
-				description: "Thank you for reaching out! I will get back to you within 24 hours."
+				description:
+					"Thank you for reaching out! I will get back to you within 24 hours.",
 			});
 		} catch (error) {
-			console.error('Contact form submission error:', error);
+			console.error("Contact form submission error:", error);
 			// setSubmitStatus("error");
 			toast.error("Failed to send message", {
-				description: "Please try again or email me directly."
+				description: "Please try again or email me directly.",
 			});
 		} finally {
 			setIsSubmitting(false);
 		}
 	};
 
+	const handleChange = (
+		e: React.ChangeEvent<
+			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+		>,
+	) => {
+		const { name, value } = e.target;
+		setFormData((prev) => ({ ...prev, [name]: value }));
+		if (touched[name as keyof FormData]) {
+			validateField(name as keyof FormData, value);
+		}
+	};
 
-	       const handleChange = (
-		       e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-	       ) => {
-		       const { name, value } = e.target;
-		       setFormData((prev) => ({ ...prev, [name]: value }));
-		       if (touched[name as keyof FormData]) {
-			       validateField(name as keyof FormData, value);
-		       }
-	       };
-
-	       const handleBlur = (
-		       e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>,
-	       ) => {
-		       const { name, value } = e.target;
-		       setTouched((prev) => ({ ...prev, [name]: true }));
-		       validateField(name as keyof FormData, value);
-	       };
+	const handleBlur = (
+		e: React.FocusEvent<
+			HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+		>,
+	) => {
+		const { name, value } = e.target;
+		setTouched((prev) => ({ ...prev, [name]: true }));
+		validateField(name as keyof FormData, value);
+	};
 
 	return (
 		<Card className="glass border-primary/20">
@@ -203,24 +220,24 @@ export function ContactForm() {
 							>
 								Name *
 							</label>
-							       <input
-								       type="text"
-								       id="name"
-								       name="name"
-								       value={formData.name}
-								       onChange={handleChange}
-								       onBlur={handleBlur}
-								       className={`w-full px-4 py-3 bg-muted border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${
-									       errors.name ? "border-destructive" : "border-border"
-								       }`}
-								       placeholder="Your full name"
-							       />
-							       {touched.name && errors.name && (
-								       <p className="text-sm text-destructive flex items-center">
-									       <HiExclamation className="h-4 w-4 mr-1" />
-									       {errors.name}
-								       </p>
-							       )}
+							<input
+								type="text"
+								id="name"
+								name="name"
+								value={formData.name}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								className={`w-full px-4 py-3 bg-muted border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${
+									errors.name ? "border-destructive" : "border-border"
+								}`}
+								placeholder="Your full name"
+							/>
+							{touched.name && errors.name && (
+								<p className="text-sm text-destructive flex items-center">
+									<HiExclamation className="h-4 w-4 mr-1" />
+									{errors.name}
+								</p>
+							)}
 						</div>
 
 						<div className="space-y-2">
@@ -230,24 +247,24 @@ export function ContactForm() {
 							>
 								Email *
 							</label>
-							       <input
-								       type="email"
-								       id="email"
-								       name="email"
-								       value={formData.email}
-								       onChange={handleChange}
-								       onBlur={handleBlur}
-								       className={`w-full px-4 py-3 bg-muted border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${
-									       errors.email ? "border-destructive" : "border-border"
-								       }`}
-								       placeholder="your@email.com"
-							       />
-							       {touched.email && errors.email && (
-								       <p className="text-sm text-destructive flex items-center">
-									       <HiExclamation className="h-4 w-4 mr-1" />
-									       {errors.email}
-								       </p>
-							       )}
+							<input
+								type="email"
+								id="email"
+								name="email"
+								value={formData.email}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								className={`w-full px-4 py-3 bg-muted border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors ${
+									errors.email ? "border-destructive" : "border-border"
+								}`}
+								placeholder="your@email.com"
+							/>
+							{touched.email && errors.email && (
+								<p className="text-sm text-destructive flex items-center">
+									<HiExclamation className="h-4 w-4 mr-1" />
+									{errors.email}
+								</p>
+							)}
 						</div>
 					</div>
 
@@ -260,16 +277,16 @@ export function ContactForm() {
 							>
 								Company/Organization
 							</label>
-							       <input
-								       type="text"
-								       id="company"
-								       name="company"
-								       value={formData.company}
-								       onChange={handleChange}
-								       onBlur={handleBlur}
-								       className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
-								       placeholder="Your company (optional)"
-							       />
+							<input
+								type="text"
+								id="company"
+								name="company"
+								value={formData.company}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+								placeholder="Your company (optional)"
+							/>
 						</div>
 
 						<div className="space-y-2">
@@ -279,14 +296,14 @@ export function ContactForm() {
 							>
 								Subject
 							</label>
-							       <select
-								       id="subject"
-								       name="subject"
-								       value={formData.subject}
-								       onChange={handleChange}
-								       onBlur={handleBlur}
-								       className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
-							       >
+							<select
+								id="subject"
+								name="subject"
+								value={formData.subject}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+							>
 								<option value="">Select a topic</option>
 								{subjectOptions.map((option) => (
 									<option key={option} value={option}>
@@ -306,14 +323,14 @@ export function ContactForm() {
 							>
 								Project Budget
 							</label>
-							       <select
-								       id="budget"
-								       name="budget"
-								       value={formData.budget}
-								       onChange={handleChange}
-								       onBlur={handleBlur}
-								       className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
-							       >
+							<select
+								id="budget"
+								name="budget"
+								value={formData.budget}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+							>
 								<option value="">Select budget range</option>
 								{budgetOptions.map((option) => (
 									<option key={option} value={option}>
@@ -330,14 +347,14 @@ export function ContactForm() {
 							>
 								Timeline
 							</label>
-							       <select
-								       id="timeline"
-								       name="timeline"
-								       value={formData.timeline}
-								       onChange={handleChange}
-								       onBlur={handleBlur}
-								       className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
-							       >
+							<select
+								id="timeline"
+								name="timeline"
+								value={formData.timeline}
+								onChange={handleChange}
+								onBlur={handleBlur}
+								className="w-full px-4 py-3 bg-muted border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors"
+							>
 								<option value="">Select timeline</option>
 								{timelineOptions.map((option) => (
 									<option key={option} value={option}>
@@ -356,24 +373,24 @@ export function ContactForm() {
 						>
 							Message *
 						</label>
-						       <textarea
-							       id="message"
-							       name="message"
-							       rows={6}
-							       value={formData.message}
-							       onChange={handleChange}
-							       onBlur={handleBlur}
-							       className={`w-full px-4 py-3 bg-muted border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-y ${
-								       errors.message ? "border-destructive" : "border-border"
-							       }`}
-							       placeholder="Tell me about your project, goals, and how I can help..."
-						       />
-						       {touched.message && errors.message && (
-							       <p className="text-sm text-destructive flex items-center">
-								       <HiExclamation className="h-4 w-4 mr-1" />
-								       {errors.message}
-							       </p>
-						       )}
+						<textarea
+							id="message"
+							name="message"
+							rows={6}
+							value={formData.message}
+							onChange={handleChange}
+							onBlur={handleBlur}
+							className={`w-full px-4 py-3 bg-muted border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary transition-colors resize-y ${
+								errors.message ? "border-destructive" : "border-border"
+							}`}
+							placeholder="Tell me about your project, goals, and how I can help..."
+						/>
+						{touched.message && errors.message && (
+							<p className="text-sm text-destructive flex items-center">
+								<HiExclamation className="h-4 w-4 mr-1" />
+								{errors.message}
+							</p>
+						)}
 						<p className="text-xs text-muted-foreground">
 							{formData.message.length}/500 characters
 						</p>

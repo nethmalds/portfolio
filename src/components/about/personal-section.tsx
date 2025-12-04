@@ -16,8 +16,8 @@ const interests = [
 	{
 		icon: HiLightBulb,
 		title: "Innovation",
-		    description:
-			    "Always exploring new technologies and pushing the boundaries of what&apos;s possible",
+		description:
+			"Always exploring new technologies and pushing the boundaries of what&apos;s possible",
 	},
 	{
 		icon: HiUsers,
@@ -72,9 +72,9 @@ export function PersonalSection() {
 
 						<div className="space-y-6 text-muted-foreground">
 							<p className="text-lg">
-								Technology is more than just code to me—it&apos;s a tool for creating
-								meaningful connections and solving real-world problems. I
-								believe in building inclusive, accessible, and sustainable
+								Technology is more than just code to me—it&apos;s a tool for
+								creating meaningful connections and solving real-world problems.
+								I believe in building inclusive, accessible, and sustainable
 								digital solutions.
 							</p>
 
@@ -114,10 +114,10 @@ export function PersonalSection() {
 
 						<div className="pt-4">
 							<Button asChild className="btn-neon glow-cyan font-semibold">
-									<Link href="/contact" className="group">
-										<HiMail className="mr-2 h-4 w-4" />
-										Let&apos;s Connect
-									</Link>
+								<Link href="/contact" className="group">
+									<HiMail className="mr-2 h-4 w-4" />
+									Let&apos;s Connect
+								</Link>
 							</Button>
 						</div>
 					</motion.div>
@@ -172,7 +172,8 @@ export function PersonalSection() {
 									{/* Quote section */}
 									<div className="text-center space-y-4 px-6">
 										<blockquote className="text-lg font-medium text-foreground italic">
-											&quot;The best way to predict the future is to create it.&quot;
+											&quot;The best way to predict the future is to create
+											it.&quot;
 										</blockquote>
 										<cite className="text-sm text-muted-foreground">
 											— Peter Drucker

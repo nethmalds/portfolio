@@ -3,12 +3,14 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import { HiMail, HiPhone, HiLocationMarker } from "react-icons/hi";
 import {
-	HiMail,
-	HiPhone,
-	HiLocationMarker,
-} from "react-icons/hi";
-import { FaGithub, FaLinkedin, FaStackOverflow, FaPinterest, FaWhatsapp } from "react-icons/fa";
+	FaGithub,
+	FaLinkedin,
+	FaStackOverflow,
+	FaPinterest,
+	FaWhatsapp,
+} from "react-icons/fa";
 import { ContactForm } from "@/components/contact/contact-form";
 
 const contactGroups = [
@@ -101,9 +103,9 @@ export function ContactPreview() {
 							</h2>
 
 							<p className="text-lg text-muted-foreground max-w-lg">
-								Have a project in mind? I&apos;m always excited to collaborate on
-								innovative ideas and bring them to life. Let&apos;s discuss how we
-								can work together.
+								Have a project in mind? I&apos;m always excited to collaborate
+								on innovative ideas and bring them to life. Let&apos;s discuss
+								how we can work together.
 							</p>
 						</div>
 

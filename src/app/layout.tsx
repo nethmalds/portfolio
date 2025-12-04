@@ -55,7 +55,8 @@ export const metadata: Metadata = {
 	twitter: {
 		card: "summary_large_image",
 		title: "Dasun Sri Nethmal - Full Stack Developer & Founder of CodeArch",
-		description: "Building modern web and mobile applications with cutting-edge technology.",
+		description:
+			"Building modern web and mobile applications with cutting-edge technology.",
 		creator: "@dasun_sri",
 	},
 	metadataBase: new URL("https://dasun-sri.dev"),

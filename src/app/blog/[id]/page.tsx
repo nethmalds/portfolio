@@ -18,7 +18,7 @@ export async function generateMetadata({
 	params,
 }: BlogPostPageProps): Promise<Metadata> {
 	const { id } = await params;
-	
+
 	// Validate ObjectId format
 	if (!Types.ObjectId.isValid(id)) {
 		return {
@@ -28,7 +28,9 @@ export async function generateMetadata({
 
 	try {
 		await connectDB();
-		const post = await BlogPost.findById(id).select('title excerpt tags createdAt').lean();
+		const post = await BlogPost.findById(id)
+			.select("title excerpt tags createdAt")
+			.lean();
 
 		if (!post) {
 			return {
@@ -49,7 +51,7 @@ export async function generateMetadata({
 			},
 		};
 	} catch (error) {
-		console.error('Error generating metadata:', error);
+		console.error("Error generating metadata:", error);
 		return {
 			title: "Post Not Found",
 		};
@@ -58,7 +60,7 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
 	const { id } = await params;
-	
+
 	// Validate ObjectId format
 	if (!Types.ObjectId.isValid(id)) {
 		notFound();
@@ -68,7 +70,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 	try {
 		await connectDB();
 		post = await BlogPost.findById(id).lean();
-		
+
 		if (!post) {
 			notFound();
 		}
@@ -76,7 +78,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 		// Increment view count
 		await BlogPost.findByIdAndUpdate(id, { $inc: { views: 1 } });
 	} catch (error) {
-		console.error('Error fetching blog post:', error);
+		console.error("Error fetching blog post:", error);
 		notFound();
 	}
 
@@ -139,7 +141,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 							</span>
 							<span className="flex items-center">
 								<HiClock className="mr-2 h-4 w-4" />
-								{post.readTime ? `${post.readTime} min read` : '5 min read'}
+								{post.readTime ? `${post.readTime} min read` : "5 min read"}
 							</span>
 							{post.featuredImage && (
 								<span className="px-3 py-1 bg-primary/20 text-primary text-xs rounded-full">
@@ -164,51 +166,68 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 					<div className="prose prose-lg prose-invert max-w-none">
 						<Card className="glass border-primary/20">
 							<CardContent className="p-8">
-								<div 
+								<div
 									className="space-y-6 text-foreground prose prose-invert max-w-none"
-									style={{ 
-										fontSize: '1.125rem',
-										lineHeight: '1.75'
+									style={{
+										fontSize: "1.125rem",
+										lineHeight: "1.75",
 									}}
 								>
 									{/* Render content as markdown-like format */}
-									{post.content.split('\n\n').map((paragraph: string, index: number) => {
-										if (paragraph.startsWith('# ')) {
+									{post.content
+										.split("\n\n")
+										.map((paragraph: string, index: number) => {
+											if (paragraph.startsWith("# ")) {
+												return (
+													<h1
+														key={index}
+														className="text-3xl font-bold mb-6 gradient-text"
+													>
+														{paragraph.replace("# ", "")}
+													</h1>
+												);
+											}
+											if (paragraph.startsWith("## ")) {
+												return (
+													<h2
+														key={index}
+														className="text-2xl font-bold mb-4 text-foreground"
+													>
+														{paragraph.replace("## ", "")}
+													</h2>
+												);
+											}
+											if (paragraph.startsWith("### ")) {
+												return (
+													<h3
+														key={index}
+														className="text-xl font-semibold mb-3 text-foreground"
+													>
+														{paragraph.replace("### ", "")}
+													</h3>
+												);
+											}
+											if (paragraph.includes("```")) {
+												return (
+													<pre
+														key={index}
+														className="bg-muted rounded-lg p-4 overflow-x-auto my-6"
+													>
+														<code className="text-sm">
+															{paragraph.replace(/```[a-z]*\n?|\n?```/g, "")}
+														</code>
+													</pre>
+												);
+											}
 											return (
-												<h1 key={index} className="text-3xl font-bold mb-6 gradient-text">
-													{paragraph.replace('# ', '')}
-												</h1>
+												<p
+													key={index}
+													className="mb-4 text-muted-foreground leading-relaxed"
+												>
+													{paragraph}
+												</p>
 											);
-										}
-										if (paragraph.startsWith('## ')) {
-											return (
-												<h2 key={index} className="text-2xl font-bold mb-4 text-foreground">
-													{paragraph.replace('## ', '')}
-												</h2>
-											);
-										}
-										if (paragraph.startsWith('### ')) {
-											return (
-												<h3 key={index} className="text-xl font-semibold mb-3 text-foreground">
-													{paragraph.replace('### ', '')}
-												</h3>
-											);
-										}
-										if (paragraph.includes('```')) {
-											return (
-												<pre key={index} className="bg-muted rounded-lg p-4 overflow-x-auto my-6">
-													<code className="text-sm">
-														{paragraph.replace(/```[a-z]*\n?|\n?```/g, '')}
-													</code>
-												</pre>
-											);
-										}
-										return (
-											<p key={index} className="mb-4 text-muted-foreground leading-relaxed">
-												{paragraph}
-											</p>
-										);
-									})}
+										})}
 								</div>
 							</CardContent>
 						</Card>

@@ -8,13 +8,19 @@ import { HiArrowLeft, HiX } from "react-icons/hi";
 import { ProjectData, ProjectCategory } from "@/models/projects";
 import Link from "next/link";
 
-const categoryValues: ProjectCategory[] = ['Web App', 'Mobile App', 'System', 'ML Model'];
+const categoryValues: ProjectCategory[] = [
+	"Web App",
+	"Mobile App",
+	"System",
+	"ML Model",
+];
 const categories = ["All", ...categoryValues];
 
-type SelectedCategory = 'All' | ProjectCategory;
+type SelectedCategory = "All" | ProjectCategory;
 
 export default function WorkGrid() {
-	const [selectedCategory, setSelectedCategory] = useState<SelectedCategory>("All");
+	const [selectedCategory, setSelectedCategory] =
+		useState<SelectedCategory>("All");
 	const [projects, setProjects] = useState<ProjectData[]>([]);
 	const [loading, setLoading] = useState(true);
 
@@ -30,8 +36,8 @@ export default function WorkGrid() {
 		async function load() {
 			try {
 				setLoading(true);
-				const res = await fetch('/api/projects?limit=100');
-				if (!res.ok) throw new Error('Failed to fetch projects');
+				const res = await fetch("/api/projects?limit=100");
+				if (!res.ok) throw new Error("Failed to fetch projects");
 				const json = await res.json();
 				if (mounted && json?.data) setProjects(json.data);
 			} catch (err) {
@@ -62,7 +68,9 @@ export default function WorkGrid() {
 				>
 					<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary mb-4" />
 					<h3 className="text-xl font-semibold mb-2">Loading projects...</h3>
-					<p className="text-muted-foreground">Please wait while we fetch the latest projects.</p>
+					<p className="text-muted-foreground">
+						Please wait while we fetch the latest projects.
+					</p>
 				</motion.div>
 			)}
 			{/* Main Content (hidden while loading) */}
@@ -74,8 +82,12 @@ export default function WorkGrid() {
 							{categories.map((category) => (
 								<Button
 									key={category}
-									onClick={() => setSelectedCategory(category as SelectedCategory)}
-									variant={selectedCategory === category ? "default" : "outline"}
+									onClick={() =>
+										setSelectedCategory(category as SelectedCategory)
+									}
+									variant={
+										selectedCategory === category ? "default" : "outline"
+									}
 									size="sm"
 									className={selectedCategory === category ? "glow-cyan" : ""}
 								>
@@ -105,7 +117,10 @@ export default function WorkGrid() {
 					</div>
 
 					{/* Projects Grid */}
-					<motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<motion.div
+						layout
+						className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+					>
 						<AnimatePresence>
 							{filteredProjects.map((project, index) => (
 								<motion.div
@@ -140,26 +155,26 @@ export default function WorkGrid() {
 						</motion.div>
 					)}
 
-				<motion.div
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					transition={{ duration: 0.8 }}
-					className="text-center"
-				>
-					<Button
-						asChild
-						size="lg"
-						className="btn-neon hover:glow-cyan font-semibold bg-transparent hover:bg-transparent border text-white hover:text-white/70"
+					<motion.div
+						initial={{ opacity: 0, y: 20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.8 }}
+						className="text-center"
 					>
-						<Link href="/" className="group">
-							<HiArrowLeft className="mr-2 h-5 w-5 inline-block group-hover:-translate-x-1 transition-transform" />
-							Back to Home
-						</Link>
-					</Button>
-				</motion.div>
-			</>
-		)}
-	</div>
+						<Button
+							asChild
+							size="lg"
+							className="btn-neon hover:glow-cyan font-semibold bg-transparent hover:bg-transparent border text-white hover:text-white/70"
+						>
+							<Link href="/" className="group">
+								<HiArrowLeft className="mr-2 h-5 w-5 inline-block group-hover:-translate-x-1 transition-transform" />
+								Back to Home
+							</Link>
+						</Button>
+					</motion.div>
+				</>
+			)}
+		</div>
 	);
 }

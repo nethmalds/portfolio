@@ -37,9 +37,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 				className={`overflow-hidden card-hover p-0 glass ${featured ? "border-primary/20" : ""} h-full`}
 			>
 				{/* Project Image */}
-				<div
-					className="relative overflow-hidden h-80"
-				>
+				<div className="relative overflow-hidden h-80">
 					{project.image ? (
 						<Image
 							src={project.image}
@@ -51,7 +49,9 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 						/>
 					) : (
 						<div className="flex items-center justify-center bg-muted/60 text-muted-foreground h-full w-full">
-							<span className="px-4 text-center text-sm font-medium">{project.title}</span>
+							<span className="px-4 text-center text-sm font-medium">
+								{project.title}
+							</span>
 						</div>
 					)}
 
@@ -69,14 +69,22 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 							</Button>
 						)}
 
-						<Button asChild size="sm" className="bg-transparent hover:bg-transparent text-white hover:text-primary">
+						<Button
+							asChild
+							size="sm"
+							className="bg-transparent hover:bg-transparent text-white hover:text-primary"
+						>
 							<Link href={project.links.case}>
 								<HiEye className="h-4 w-4" />
 							</Link>
 						</Button>
 
 						{project.links.repo && (
-							<Button asChild size="sm" className="bg-transparent hover:bg-transparent text-white hover:text-primary">
+							<Button
+								asChild
+								size="sm"
+								className="bg-transparent hover:bg-transparent text-white hover:text-primary"
+							>
 								<Link
 									href={project.links.repo}
 									target="_blank"
@@ -94,10 +102,10 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
 							className={`px-2 py-1 rounded-full text-xs font-medium ${
 								project.status === "Ongoing"
 									? "bg-primary text-primary-foreground"
-									: project.status === "Active" || project.status === "Completed"
+									: project.status === "Active" ||
+											project.status === "Completed"
 										? "bg-green-600 text-white"
 										: "bg-gray-600 text-white"
-
 							}`}
 						>
 							{project.status}

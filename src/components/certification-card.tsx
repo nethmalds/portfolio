@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -17,7 +16,11 @@ export interface CertificationType {
 	skills: string[];
 }
 
-export function CertificationCard({ certification }: { certification: CertificationType }) {
+export function CertificationCard({
+	certification,
+}: {
+	certification: CertificationType;
+}) {
 	return (
 		<Card className="h-full hover:shadow-lg transition-shadow duration-300 group">
 			<CardHeader className="pb-3">

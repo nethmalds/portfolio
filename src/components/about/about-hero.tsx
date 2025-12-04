@@ -85,9 +85,9 @@ export function AboutHero() {
 							</p>
 
 							<p>
-								When I&apos;m not coding, you&apos;ll find me contributing to open source
-								projects, writing technical articles, mentoring junior
-								developers, or exploring the latest developments in web
+								When I&apos;m not coding, you&apos;ll find me contributing to
+								open source projects, writing technical articles, mentoring
+								junior developers, or exploring the latest developments in web
 								standards and performance optimization.
 							</p>
 						</div>

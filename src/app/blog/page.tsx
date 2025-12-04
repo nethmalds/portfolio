@@ -25,18 +25,18 @@ async function getBlogPosts() {
 	try {
 		await connectDB();
 		const posts = await BlogPost.find({ published: true })
-			.select('-content -__v')
+			.select("-content -__v")
 			.sort({ createdAt: -1 })
 			.lean();
 		// Convert MongoDB ObjectIds to strings for serialization
-		return posts.map(post => ({
+		return posts.map((post) => ({
 			...post,
 			_id: post._id.toString(),
 			createdAt: post.createdAt.toISOString(),
 			updatedAt: post.updatedAt.toISOString(),
 		}));
 	} catch (error) {
-		console.error('Error fetching blog posts:', error);
+		console.error("Error fetching blog posts:", error);
 		return [];
 	}
 }

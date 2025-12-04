@@ -11,9 +11,7 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-	HiMenu,
-} from "react-icons/hi";
+import { HiMenu } from "react-icons/hi";
 
 const navigation = [
 	{ name: "Work", href: "/work" },

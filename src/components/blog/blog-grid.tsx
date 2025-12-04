@@ -58,13 +58,13 @@ export function BlogGrid({ initialPosts = [] }: BlogGridProps) {
 
 	const fetchBlogPosts = async () => {
 		try {
-			const response = await fetch('/api/blog?published=true');
+			const response = await fetch("/api/blog?published=true");
 			if (response.ok) {
 				const data = await response.json();
 				setBlogPosts(data.data || []);
 			}
 		} catch (error) {
-			console.error('Error fetching blog posts:', error);
+			console.error("Error fetching blog posts:", error);
 		} finally {
 			setLoading(false);
 		}
@@ -109,7 +109,9 @@ export function BlogGrid({ initialPosts = [] }: BlogGridProps) {
 													</span>
 													<span className="flex items-center">
 														<HiClock className="h-4 w-4 mr-1" />
-														{post.readTime ? `${post.readTime} min read` : '5 min read'}
+														{post.readTime
+															? `${post.readTime} min read`
+															: "5 min read"}
 													</span>
 												</div>
 												<span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full">
@@ -187,7 +189,9 @@ export function BlogGrid({ initialPosts = [] }: BlogGridProps) {
 											</span>
 											<span className="flex items-center">
 												<HiClock className="h-4 w-4 mr-1" />
-												{post.readTime ? `${post.readTime} min read` : '5 min read'}
+												{post.readTime
+													? `${post.readTime} min read`
+													: "5 min read"}
 											</span>
 										</div>
 

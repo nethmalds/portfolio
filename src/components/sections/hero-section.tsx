@@ -68,9 +68,11 @@ export function HeroSection() {
 							transition={{ delay: 1.5, duration: 0.8 }}
 							className="text-lg text-muted-foreground max-w-3xl"
 						>
-							I craft exceptional digital experiences through modern web technologies, intelligent automation, and thoughtful user-centered design. 
-							My work blends full-stack engineering, AI-powered features, and scalable architectures to create products that feel seamless, intuitive, 
-							and future-ready.
+							I craft exceptional digital experiences through modern web
+							technologies, intelligent automation, and thoughtful user-centered
+							design. My work blends full-stack engineering, AI-powered
+							features, and scalable architectures to create products that feel
+							seamless, intuitive, and future-ready.
 						</motion.p>
 
 						{/* CTAs */}

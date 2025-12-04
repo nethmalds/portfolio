@@ -21,7 +21,13 @@ export const projects: Project[] = [
 		description:
 			"Developed a biometric authentication system using accelerometer and gyroscope data. Built MLP-based user-specific models with feature extraction and threshold-based verification.",
 		image: "/images/projects/auth-system.jpg",
-		technologies: ["MATLAB", " Pattern Recognition", "Deep Learning", "MLP", "Biometrics"],
+		technologies: [
+			"MATLAB",
+			" Pattern Recognition",
+			"Deep Learning",
+			"MLP",
+			"Biometrics",
+		],
 		role: "ML Engineer",
 		year: "2024",
 		status: "Featured",
@@ -51,7 +57,14 @@ export const projects: Project[] = [
 		description:
 			"Developed CNN and MLP models for image classification and NLP tasks. Implemented preprocessing, training pipelines, model evaluation, and visualization with performance comparison.",
 		image: "/images/projects/deep-learning.jpg",
-		technologies: ["Python", "CNN", "MLP", "Image Classification", "NLP", "TensorFlow"],
+		technologies: [
+			"Python",
+			"CNN",
+			"MLP",
+			"Image Classification",
+			"NLP",
+			"TensorFlow",
+		],
 		role: "AI/ML Engineer",
 		year: "2024",
 		status: "Featured",
@@ -66,7 +79,13 @@ export const projects: Project[] = [
 		description:
 			"Built a student project platform with TypeScript, App Router, and modular components. Developed pages for project submissions, viewing, and content management with optimized UI and routing.",
 		image: "/images/projects/studpro-portal.jpg",
-		technologies: ["Next.js", "TypeScript", "App Router", "UI/UX", "Performance Optimization"],
+		technologies: [
+			"Next.js",
+			"TypeScript",
+			"App Router",
+			"UI/UX",
+			"Performance Optimization",
+		],
 		role: "Frontend Developer",
 		year: "2024",
 		status: "Live",
@@ -82,7 +101,13 @@ export const projects: Project[] = [
 		description:
 			"Created a Windows Forms POS system with billing, inventory, and reporting modules. Integrated SQL Server for data management and transaction handling with receipt generation and customer management.",
 		image: "/images/projects/pos-system.jpg",
-		technologies: ["C#", ".NET Framework", "Windows Forms", "SQL Server", "Desktop App"],
+		technologies: [
+			"C#",
+			".NET Framework",
+			"Windows Forms",
+			"SQL Server",
+			"Desktop App",
+		],
 		role: "Desktop Application Developer",
 		year: "2023",
 		status: "Completed",
