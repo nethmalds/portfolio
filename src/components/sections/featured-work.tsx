@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ProjectCard } from "@/components/project-card";
 import Link from "next/link";
 import { HiArrowRight } from "react-icons/hi";
@@ -85,7 +84,7 @@ export default function FeaturedWork() {
 	}
 
 	return (
-		<section className="py-12 sm:py-16 lg:py-32 bg-background">
+		<section className="py-12 sm:py-16 lg:py-32 bg-background overflow-x-hidden">
 			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<motion.div

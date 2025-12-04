@@ -66,7 +66,7 @@ export default function CertificationsSection() {
 	}
 
 	return (
-		<section className="py-12 sm:py-16 lg:py-32 bg-muted/30">
+		<section className="py-12 sm:py-16 lg:py-32 bg-muted/30 overflow-x-hidden">
 			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<motion.div

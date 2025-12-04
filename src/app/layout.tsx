@@ -81,7 +81,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background font-sans dark `}
+				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background font-sans dark overflow-x-hidden`}
 				suppressHydrationWarning={true}
 			>
 				<ThemeProvider
@@ -90,9 +90,9 @@ export default function RootLayout({
 					enableSystem={false}
 					disableTransitionOnChange
 				>
-					<div className="relative flex min-h-screen flex-col">
-						{/* <Header /> */}
-						<main className="flex-1">{children}</main>
+				<div className="relative flex min-h-screen flex-col overflow-x-hidden">
+					{/* <Header /> */}
+					<main className="flex-1 overflow-x-hidden">{children}</main>
 						<Toaster />
 						<Footer />
 					</div>

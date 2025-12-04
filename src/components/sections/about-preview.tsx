@@ -63,7 +63,7 @@ const skills = [
 
 export function AboutPreview() {
 	return (
-		<section className="py-12 sm:py-16 lg:py-32 bg-muted/30">
+		<section className="py-12 sm:py-16 lg:py-32 bg-muted/30 overflow-x-hidden">
 			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 				<div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 					{/* Left Column - Image and Stats */}
@@ -75,7 +75,7 @@ export function AboutPreview() {
 						className="space-y-8 flex justify-center mb-8 lg:mb-0"
 					>
 						{/* Profile Image */}
-						<div className="relative hidden">
+						<div className="relative hidden md:flex">
 							<div className="relative h-150 w-lg mx-auto lg:mx-0">
 								<div className="absolute inset-0 bg-linear-to-br from-primary to-accent rounded-2xl blur-2xl opacity-20 animate-glow" />
 								<Image

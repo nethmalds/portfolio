@@ -79,7 +79,7 @@ const socialLinks = [
 
 export function ContactPreview() {
 	return (
-		<section id="contact" className="py-12 sm:py-16 lg:pt-32 bg-background">
+		<section id="contact" className="py-12 sm:py-16 lg:pt-32 bg-background overflow-x-hidden">
 			<div className="container mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
 				<div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-start">
 					{/* Left Column - Content */}
@@ -126,16 +126,18 @@ export function ContactPreview() {
 											{group.items.map((item) => (
 												<div key={item.label}>
 													{item.label === "Location" ? (
-														<iframe
-															src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3963.9329533635314!2d79.99770167499298!3d6.530152393462526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzEnNDguNiJOIDgwwrAwMCcwMS4wIkU!5e0!3m2!1sen!2slk!4v1764856303973!5m2!1sen!2slk"
-															width="100%"
-															height="300"
-															style={{ border: 0 }}
-															allowFullScreen
-															loading="lazy"
-															className="rounded-lg opacity-65 hover:opacity-100 transition-opacity duration-300"
-															title="Location Map"
-														></iframe>
+														<div className="w-full overflow-hidden rounded-lg">
+															<iframe
+																src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3963.9329533635314!2d79.99770167499298!3d6.530152393462526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzEnNDguNiJOIDgwwrAwMCcwMS4wIkU!5e0!3m2!1sen!2slk!4v1764856303973!5m2!1sen!2slk"
+																width="100%"
+																height="300"
+																style={{ border: 0 }}
+																allowFullScreen
+																loading="lazy"
+																className="rounded-lg opacity-65 hover:opacity-100 transition-opacity duration-300 w-full"
+																title="Location Map"
+															></iframe>
+														</div>
 													) : (
 														<div className="flex items-center space-x-4 py-3">
 															<div
