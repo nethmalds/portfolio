@@ -176,7 +176,7 @@ export function AboutPreview() {
 
 							<Button asChild className="font-semibold hover:glow-magenta">
 								<a
-									href="/resume/alex-chen-resume.pdf"
+									href="/resume/resume.pdf"
 									download
 									className="group"
 									target="_blank"
