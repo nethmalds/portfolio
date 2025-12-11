@@ -13,12 +13,11 @@ import {
 	HiUser,
 	HiTag,
 } from "react-icons/hi";
-import { motion } from "framer-motion";
 
 // Fetch project data from API
 async function getProject(slug: string) {
 	try {
-		const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3001";
+		const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 		const res = await fetch(`${baseUrl}/api/projects/${slug}`, {
 			cache: "no-store",
 		});
