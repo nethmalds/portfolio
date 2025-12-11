@@ -9,7 +9,7 @@ export default function ProjectNotFound() {
 				<div className="text-8xl mb-6">🔍</div>
 				<h1 className="text-4xl font-bold mb-4">Project Not Found</h1>
 				<p className="text-xl text-muted-foreground mb-8 max-w-md">
-					Sorry, the project you're looking for doesn't exist or has been moved.
+					Sorry, the project you&apos;re looking for doesn&apos;t exist or has been moved.
 				</p>
 				<div className="flex gap-4">
 					<Button asChild size="lg">

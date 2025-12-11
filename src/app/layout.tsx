@@ -5,6 +5,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { LenisProvider } from "@/components/lenis-provider";
 
 const geistSans = Geist({
 	variable: "--font-geist-sans",
@@ -84,19 +85,21 @@ export default function RootLayout({
 				className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background font-sans dark overflow-x-hidden`}
 				suppressHydrationWarning={true}
 			>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="dark"
-					enableSystem={false}
-					disableTransitionOnChange
-				>
-				<div className="relative flex min-h-screen flex-col overflow-x-hidden">
-					{/* <Header /> */}
-					<main className="flex-1 overflow-x-hidden">{children}</main>
-						<Toaster />
-						<Footer />
-					</div>
-				</ThemeProvider>
+				<LenisProvider>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="dark"
+						enableSystem={false}
+						disableTransitionOnChange
+					>
+						<div className="relative flex min-h-screen flex-col overflow-x-hidden">
+							{/* <Header /> */}
+							<main className="flex-1 overflow-x-hidden">{children}</main>
+								<Toaster />
+								<Footer />
+						</div>
+					</ThemeProvider>
+				</LenisProvider>
 			</body>
 		</html>
 	);

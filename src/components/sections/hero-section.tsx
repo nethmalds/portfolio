@@ -52,11 +52,11 @@ export function HeroSection() {
 							transition={{ delay: 1.3, duration: 0.8 }}
 							className="space-y-3 sm:space-y-4"
 						>
-							<h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold tracking-tight">
+							<h1 className="text-3xl sm:text-5xl lg:text-8xl font-bold tracking-tight">
 								<span className="text-foreground">Hi, I&apos;m </span>
 								<span className="text-primary">Dasun Sri Nethmal</span>
 							</h1>
-							<h2 className="text-lg sm:text-xl lg:text-3xl font-medium text-muted-foreground">
+							<h2 className="text-lg sm:text-xl lg:text-3xl font-medium ">
 								Software Engineer, AI Enthusiast & Tech Innovator
 							</h2>
 						</motion.div>
@@ -66,7 +66,7 @@ export function HeroSection() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 1.5, duration: 0.8 }}
-							className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto lg:mx-0"
+							className="text-sm sm:text-lg text-muted-foreground max-w-3xl mx-auto lg:mx-0"
 						>
 							I craft exceptional digital experiences through modern web
 							technologies, intelligent automation, and thoughtful user-centered
@@ -80,7 +80,7 @@ export function HeroSection() {
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ delay: 1.7, duration: 0.8 }}
-							className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start"
+							className="flex flex-col sm:flex-row gap-6 sm:gap-6 justify-center lg:justify-start"
 						>
 							<Button
 								asChild

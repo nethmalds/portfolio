@@ -2,11 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import { Project } from "@/models";
 
-export async function GET(
-	request: NextRequest,
-	{ params }: { params: { slug: string } }
-) {
-	try {
+export async function GET(request: NextRequest, props: { params: Promise<{ slug: string }> }) {
+    const params = await props.params;
+    try {
 		await connectDB();
 
 		const slug = params.slug;

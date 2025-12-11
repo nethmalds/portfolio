@@ -1,3 +1,4 @@
+
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Image from "next/image";
@@ -12,6 +13,7 @@ import {
 	HiUser,
 	HiTag,
 } from "react-icons/hi";
+import { motion } from "framer-motion";
 
 // Fetch project data from API
 async function getProject(slug: string) {
@@ -33,20 +35,21 @@ async function getProject(slug: string) {
 	}
 }
 
-export async function generateMetadata({
-	params,
-}: {
-	params: { slug: string };
-}): Promise<Metadata> {
-	const project = await getProject(params.slug);
+export async function generateMetadata(
+    props: {
+        params: Promise<{ slug: string }>;
+    }
+): Promise<Metadata> {
+    const params = await props.params;
+    const project = await getProject(params.slug);
 
-	if (!project) {
+    if (!project) {
 		return {
 			title: "Project Not Found",
 		};
 	}
 
-	return {
+    return {
 		title: `${project.title} - Project Case Study`,
 		description: project.description,
 		openGraph: {
@@ -57,29 +60,20 @@ export async function generateMetadata({
 	};
 }
 
-export default async function ProjectPage({
-	params,
-}: {
-	params: { slug: string };
-}) {
-	const project = await getProject(params.slug);
+export default async function ProjectPage(
+    props: {
+        params: Promise<{ slug: string }>;
+    }
+) {
+    const params = await props.params;
+    const project = await getProject(params.slug);
 
-	if (!project) {
+    if (!project) {
 		notFound();
 	}
 
-	return (
+    return (
 		<div className="container mx-auto max-w-5xl px-4 py-20">
-			{/* Back Button */}
-			<div className="mb-8">
-				<Button asChild variant="ghost" size="sm">
-					<Link href="/projects" className="group">
-						<HiArrowLeft className="mr-2 h-4 w-4 group-hover:-translate-x-1 transition-transform" />
-						Back to Work
-					</Link>
-				</Button>
-			</div>
-
 			{/* Project Header */}
 			<div className="space-y-6 mb-12">
 				<div className="inline-flex items-center rounded-full border border-border bg-muted/50 px-4 py-2 text-sm">
@@ -223,14 +217,17 @@ export default async function ProjectPage({
 				</CardContent>
 			</Card>
 
-			{/* Navigation */}
-			<div className="flex justify-center pt-8">
-				<Button asChild size="lg" variant="outline">
-					<Link href="/projects">
-						<HiArrowLeft className="mr-2 h-5 w-5" />
-						View All Projects
-					</Link>
-				</Button>
+			<div className="text-center">
+			<Button
+			asChild
+			size="lg"
+			className="btn-neon hover:glow-cyan font-semibold bg-transparent hover:bg-transparent border text-white hover:text-white/70"
+			>
+				<Link href="/projects" className="group">
+					<HiArrowLeft className="mr-2 h-5 w-5 inline-block group-hover:-translate-x-1 transition-transform" />
+					Back to Projects
+				</Link>
+			</Button>
 			</div>
 		</div>
 	);
