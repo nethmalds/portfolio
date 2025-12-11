@@ -87,7 +87,7 @@ export function HeroSection() {
 								size="lg"
 								className="btn-neon glow-cyan font-semibold"
 							>
-								<Link href="/work" className="group">
+								<Link href="/projects" className="group">
 									View My Work
 									<HiArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 								</Link>

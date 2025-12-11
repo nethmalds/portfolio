@@ -51,6 +51,32 @@ const sampleProjects = [
     },
   },
   {
+    title: "Inventory Management RBAC Platform",
+    description:
+      "A full-stack inventory management system with role-based access control, automated reporting, and email notifications. Backend: NestJS REST API (TypeORM, Bull, Nodemailer, JWT, Passport, Joi, Class-validator). Frontend: Next.js 14 (App Router, NextAuth.js, shadcn/ui, Tailwind CSS, React Hook Form, Zod, Axios). Features: user roles (Admin, Manager, Viewer), inventory CRUD, automated email reports, background jobs, and secure authentication.",
+    image: "/images/projects/inventory.png",
+    technologies: [
+      "NestJS",
+      "TypeORM",
+      "MySQL",
+      "Redis",
+      "Bull",
+      "Nodemailer",
+      "Next.js",
+      "Zod",
+      "Axios",
+      "Docker",
+    ],
+    role: "Full Stack Developer",
+    year: "2025",
+    status: "Completed",
+    category: "Web App",
+    links: {
+      case: "/projects/inventory-management-system",
+      repo: "https://github.com/nethmalds/inventory-management"
+    },
+  },
+  {
     title: "Ticket Booking Web App",
     description:
       "End-to-end TypeScript ticket booking system built for events and venues that supports interactive seat selection, reservation holds, and a secure checkout flow alongside real-world booking constraints to minimize double-booking. The design models timed holds with automatic release, concurrency-aware reservation locking, and inventory tracking for promotions and complex pricing tiers. Frontend uses TypeScript with accessible seat maps and responsive UX; backend services provide payments, notifications, analytics, and reporting. Developers get seeded fixtures, robust tests, clear APIs, and deployment scripts. The codebase is intended to be production-ready, extensible, well-documented, and straightforward to integrate into existing event platforms with support for high throughput.",

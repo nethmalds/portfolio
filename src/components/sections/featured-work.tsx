@@ -150,7 +150,7 @@ export default function FeaturedWork() {
 						size="lg"
 						className="btn-neon hover:glow-cyan font-semibold bg-transparent hover:bg-transparent border text-white hover:text-white/70"
 					>
-						<Link href="/work" className="group">
+						<Link href="/projects" className="group">
 							View All Projects
 							<HiArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 						</Link>

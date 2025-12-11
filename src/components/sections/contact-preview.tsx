@@ -19,8 +19,8 @@ const contactGroups = [
 			{
 				icon: HiMail,
 				label: "Email",
-				value: "dasunsrin@gmail.com",
-				href: "mailto:dasunsrin@gmail.com",
+				value: "contact@dasunsri.dev",
+				href: "mailto:contact@dasunsri.dev",
 			},
 			{
 				icon: HiPhone,
@@ -42,8 +42,8 @@ const contactGroups = [
 			{
 				icon: HiLocationMarker,
 				label: "Location",
-				value: "San Francisco, CA",
-				href: null,
+				value: "Sri Lanka",
+				href: undefined,
 			},
 		],
 		primary: false,
@@ -130,7 +130,7 @@ export function ContactPreview() {
 															<iframe
 																src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3963.9329533635314!2d79.99770167499298!3d6.530152393462526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzEnNDguNiJOIDgwwrAwMCcwMS4wIkU!5e0!3m2!1sen!2slk!4v1764856303973!5m2!1sen!2slk"
 																width="100%"
-																height="300"
+																height="360"
 																style={{ border: 0 }}
 																allowFullScreen
 																loading="lazy"
@@ -171,14 +171,23 @@ export function ContactPreview() {
 								</motion.div>
 							))}
 						</div>
+					</motion.div>
 
-						{/* Social Links */}
+					{/* Right Column - Social Links and Contact Form */}
+					<motion.div
+						initial={{ opacity: 0, x: 50 }}
+						whileInView={{ opacity: 1, x: 0 }}
+						viewport={{ once: true }}
+						transition={{ duration: 0.8 }}
+					>
+						<ContactForm />
+						{/* Social Links (moved to bottom) */}
 						<motion.div
 							initial={{ opacity: 0, y: 20 }}
 							whileInView={{ opacity: 1, y: 0 }}
 							viewport={{ once: true }}
 							transition={{ duration: 0.8 }}
-							className="space-y-4"
+							className="space-y-4 mt-8"
 						>
 							<h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
 								Connect With Me
@@ -204,16 +213,6 @@ export function ContactPreview() {
 								))}
 							</div>
 						</motion.div>
-					</motion.div>
-
-					{/* Right Column - Contact Form */}
-					<motion.div
-						initial={{ opacity: 0, x: 50 }}
-						whileInView={{ opacity: 1, x: 0 }}
-						viewport={{ once: true }}
-						transition={{ duration: 0.8 }}
-					>
-						<ContactForm />
 					</motion.div>
 				</div>
 			</div>
