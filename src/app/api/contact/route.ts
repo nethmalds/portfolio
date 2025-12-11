@@ -65,8 +65,7 @@ export async function POST(request: NextRequest) {
 			{
 				error:
 					"Failed to send message. Please try again or contact me directly.",
-				details:
-					process.env.NODE_ENV === "development" ? error.message : undefined,
+				details: error.message
 			},
 			{ status: 500 },
 		);
